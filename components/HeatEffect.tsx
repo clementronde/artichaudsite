@@ -34,7 +34,7 @@ export default function HeatEffect({ className }: Props) {
       o: number;
     };
     const blobs: Blob[] = [];
-    const COUNT = 16;
+    const COUNT = 6;
     const init = () => {
       blobs.length = 0;
       const w = canvas.width / dpr,
@@ -43,10 +43,10 @@ export default function HeatEffect({ className }: Props) {
         blobs.push({
           x: Math.random() * w,
           y: h * (0.6 + Math.random() * 0.5), // concentrés vers le bas
-          r: 240 + Math.random() * 320,
-          vx: (Math.random() - 0.5) * 0.1,
-          vy: (Math.random() - 0.5) * 0.06,
-          o: 0.14 + Math.random() * 0.22,
+          r: 400 + Math.random() * 300,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.4) * 0.2,
+          o: 0.35 + Math.random() * 0.25,
         });
       }
     };
@@ -99,20 +99,23 @@ export default function HeatEffect({ className }: Props) {
       gust = LERP(
         gust,
         mouse.active ? gustTarget : 0,
-        mouse.active ? 0.25 : GUST_DECAY
+        mouse.active ? 0.25 : 0.18
       );
       // la cible redescend doucement
-      gustTarget = Math.max(0, gustTarget - 0.03);
+      gustTarget = Math.max(0, gustTarget - 0.08);
 
       // update blobs
       for (const b of blobs) {
+        const turbulence = Math.sin(Date.now() * 0.001 + b.x * 0.01) * 0.05;
+        b.vx += turbulence;
+        b.vy += Math.cos(Date.now() * 0.001 + b.y * 0.01) * 0.03;
         // force de vent radiale depuis la souris
         if (gust > 0.001) {
           const dx = b.x - mouse.x;
           const dy = b.y - mouse.y;
           const dist2 = dx * dx + dy * dy;
           // zone d’influence (rayon ~ 280..420 px selon gust)
-          const influence = 280 + gust * 140;
+          const influence = 150 + gust * 80;
           const sigma2 = influence * influence; // gaussienne simple
           const falloff = Math.exp(-dist2 / (2 * sigma2)); // 0..1
 
@@ -134,8 +137,8 @@ export default function HeatEffect({ className }: Props) {
         b.y += b.vy;
 
         // friction légère
-        b.vx *= 0.985;
-        b.vy *= 0.985;
+        b.vx *= 0.92;
+        b.vy *= 0.92;
 
         // rebonds doux (zone utile: 35%–115% hauteur)
         if (b.x < -b.r || b.x > w + b.r) b.vx *= -1;
@@ -150,8 +153,8 @@ export default function HeatEffect({ className }: Props) {
       ctx.globalCompositeOperation = 'lighter';
       for (const b of blobs) {
         const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-        g.addColorStop(0, `rgba(255,140,60,${b.o})`);
-        g.addColorStop(0.45, `rgba(255,95,25,${b.o * 0.55})`);
+        g.addColorStop(0, `rgba(255,140,60,${b.o * 1.2})`);      // ← Plus intense au centre
+        g.addColorStop(0.45, `rgba(255,95,25,${b.o * 0.75})`);   // ← Plus visible au milieu
         g.addColorStop(1, 'rgba(255,60,0,0)');
         ctx.fillStyle = g;
         ctx.fillRect(b.x - b.r, b.y - b.r, b.r * 2, b.r * 2);
@@ -200,7 +203,7 @@ export default function HeatEffect({ className }: Props) {
     <canvas
       ref={canvasRef}
       // ⚠️ laissons le canvas recevoir les events souris (donc PAS pointer-events-none)
-      className={`absolute inset-0 w-full h-full filter blur-[60px] ${
+      className={`absolute inset-0 w-full h-full filter blur-[80px] ${
         className ?? ''
       }`}
     />
