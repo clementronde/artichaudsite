@@ -134,63 +134,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SELECTED WORKS */}
-      <section className="section-padding bg-noir">
-        <div className="container-custom">
-          <h2 className="mb-20">
-            Selected{' '}
-            <span className="font-light italic opacity-60">( Works )</span>
-          </h2>
+      {/* ⭐ BARRE ORANGE 90px */}
+      <div className="w-full h-[90px] bg-[#E94601]"></div>
+      
+     {/* SELECTED WORKS */}
+<section className="relative section-padding bg-[#191919] overflow-hidden">
+  
+  {/* Traits verticaux - 3 lignes pour diviser en 4 parties */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="relative h-full max-w-[1400px] mx-auto">
+      {/* Trait 1 - à 25% */}
+      <div 
+        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
+        style={{ left: '25%' }}
+      />
+      {/* Trait 2 - à 50% */}
+      <div 
+        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
+        style={{ left: '50%' }}
+      />
+      {/* Trait 3 - à 75% */}
+      <div 
+        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
+        style={{ left: '75%' }}
+      />
+    </div>
+  </div>
 
-          <div className="space-y-32">
-            {selectedWorks.map((work, index) => (
-              <article
-                key={work.id}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
-              >
-                {/* Image du projet */}
-                <div
-                  className={`relative aspect-[4/3] bg-gradient-to-br from-orange/20 to-rouge/20 rounded-2xl overflow-hidden group ${
-                    index % 2 === 1 ? 'lg:order-2' : ''
-                  }`}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center text-8xl">
-                    🔥
-                  </div>
-                  {/* Ajoute tes images ici plus tard */}
-                </div>
+  <div className="container-custom relative z-10">
+    {/* Titre stylisé */}
+    <div className="mb-20">
+      <h2 className="inline">
+        <span 
+          className="text-blanc font-bold leading-[126px]"
+          style={{ fontSize: '90px', fontFamily: 'Inter' }}
+        >
+          Selected
+        </span>
+        <span 
+          className="text-blanc font-semibold italic leading-[98px] ml-4"
+          style={{ fontSize: '70px', fontFamily: 'Instrument Serif, serif' }}
+        >
+          (Works)
+        </span>
+      </h2>
+    </div>
 
-                {/* Infos du projet */}
-                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="flex items-start gap-8 mb-6">
-                    <span className="text-6xl font-bold text-orange">
-                      ( {work.number} )
-                    </span>
-                    <div>
-                      <h3 className="text-5xl font-bold mb-8">{work.title}</h3>
-
-                      <div>
-                        <p className="text-sm uppercase tracking-wider text-orange mb-3">
-                          Deliverables
-                        </p>
-                        <ul className="space-y-2">
-                          {work.deliverables.map((deliverable, i) => (
-                            <li key={i} className="text-lg opacity-80">
-                              {deliverable}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
+    {/* Liste des projets */}
+    <div className="space-y-32">
+      {selectedWorks.map((work, index) => (
+        <article
+          key={work.id}
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+            index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+          }`}
+        >
+          {/* Image du projet */}
+          <div
+            className={`relative aspect-[4/3] bg-gradient-to-br from-orange/20 to-rouge/20 rounded-2xl overflow-hidden group ${
+              index % 2 === 1 ? 'lg:order-2' : ''
+            }`}
+          >
+            <div className="absolute inset-0 flex items-center justify-center text-8xl">
+              🔥
+            </div>
+            {/* Ajoute tes images ici plus tard */}
           </div>
-        </div>
-      </section>
+
+          {/* Infos du projet */}
+          <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+            <div className="flex items-start gap-8 mb-6">
+              <span className="text-6xl font-bold text-orange">
+                ( {work.number} )
+              </span>
+              <div>
+                <h3 className="text-5xl font-bold mb-8">{work.title}</h3>
+
+                <div>
+                  <p className="text-sm uppercase tracking-wider text-orange mb-3">
+                    Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {work.deliverables.map((deliverable, i) => (
+                      <li key={i} className="text-lg opacity-80">
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* SERVICES */}
       <section className="section-padding bg-gradient-to-b from-noir via-orange/5 to-noir">
