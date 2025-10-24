@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-instrument: 'Instrument Serif', Georgia, 'Times New Roman', Times, serif;
+  }
+
   * {
     @apply border-blanc/10;
   }
@@ -22,6 +27,14 @@
   h3 {
     @apply text-[clamp(1.5rem,3vw,3.125rem)] leading-tight;
   }
+
+  /* Style pour les éléments entre parenthèses dans les titres */
+  h1 .parenthesis,
+  h2 .parenthesis,
+  h3 .parenthesis {
+    font-family: var(--font-instrument);
+    @apply font-light italic;
+  }
 }
 
 @layer components {
@@ -37,5 +50,14 @@
 
   .section-padding {
     @apply py-[clamp(3rem,8vw,8rem)];
+  }
+
+  .font-instrument {
+    font-family: var(--font-instrument);
+  }
+
+  .font-instrument-light {
+    font-family: var(--font-instrument);
+    @apply font-light italic;
   }
 }

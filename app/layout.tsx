@@ -2,16 +2,18 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, Instrument_Serif } from 'next/font/google';
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-inter',
+});
 
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: ['400'],
-  style: ['italic'],
+  style: ['normal', 'italic'],
   variable: '--font-instrument',
-});
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -29,7 +31,8 @@ export default function RootLayout({
     <html lang="fr" className="scroll-smooth">
       <body
         className={`${inter.variable} ${instrumentSerif.variable} font-inter bg-noir text-blanc antialiased`}
-      >  {children}
+      >
+        {children}
       </body>
     </html>
   );

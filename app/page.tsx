@@ -10,70 +10,82 @@ export default function Home() {
       title: 'Charit.IO',
       number: '01',
       deliverables: ['Webdesign', 'Social media', 'Brand identity'],
-      image: '/works/charitio.jpg',
+      image: '/img/selectedworks/charitio.jpg',
     },
     {
       id: 2,
       title: 'Multiface',
       number: '02',
       deliverables: ['Webdesign', 'Brand strategy', 'Brand identity'],
-      image: '/works/multiface.jpg',
+      image: '/img/selectedworks/multiface.jpg',
     },
     {
       id: 3,
       title: 'Disobey',
       number: '03',
       deliverables: ['Webdesign', 'Brand strategy', 'Social media'],
-      image: '/works/disobey.jpg',
+      image: '/img/selectedworks/disobey.jpg',
     },
     {
       id: 4,
       title: "Com'on",
       number: '04',
       deliverables: ['Webdesign', 'Brand strategy', 'Brand identity'],
-      image: '/works/comon.jpg',
+      image: '/img/selectedworks/comon.jpg',
     },
     {
       id: 5,
       title: 'Keleti tautu',
       number: '05',
       deliverables: ['Social media', 'Brand strategy', 'Brand identity'],
-      image: '/works/keleti.jpg',
+      image: '/img/selectedworks/keleti.jpg',
     },
   ];
 
-  const services = [
-    {
-      number: '01',
-      title: 'Brand strategy',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    },
-    {
-      number: '02',
-      title: 'Visual identity',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    },
-    {
-      number: '03',
-      title: 'Webdesign',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    },
-    {
-      number: '04',
-      title: 'Webmarketing',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    },
-    {
-      number: '05',
-      title: 'Shooting produit',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    },
-  ];
+  // Dans app/page.tsx, mettre à jour le tableau services :
+
+const services = [
+  {
+    number: '01',
+    title: 'Brand strategy',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    image1: '/img/services/brandstrategy1.jpg',
+    image2: '/img/services/brandstrategy2.jpg',
+  },
+  {
+    number: '02',
+    title: 'Visual identity',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    image1: '/services/visual-identity-1.jpg',
+    image2: '/services/visual-identity-2.jpg',
+  },
+  {
+    number: '03',
+    title: 'Webdesign',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    image1: '/services/webdesign-1.jpg',
+    image2: '/services/webdesign-2.jpg',
+  },
+  {
+    number: '04',
+    title: 'Webmarketing',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    image1: '/services/webmarketing-1.jpg',
+    image2: '/services/webmarketing-2.jpg',
+  },
+  {
+    number: '05',
+    title: 'Shooting produit',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    image1: '/services/shooting-1.jpg',
+    image2: '/services/shooting-2.jpg',
+  },
+];
 
   return (
     <>
@@ -138,85 +150,85 @@ export default function Home() {
       <div className="w-full h-[90px] bg-[#E94601]"></div>
       
      {/* SELECTED WORKS */}
-<section className="relative section-padding bg-[#191919] overflow-hidden">
+{/* SELECTED WORKS */}
+<section className="relative section-padding bg-noir overflow-hidden">
   
-  {/* Traits verticaux - 3 lignes pour diviser en 4 parties */}
-  <div className="absolute inset-0 pointer-events-none">
-    <div className="relative h-full max-w-[1400px] mx-auto">
-      {/* Trait 1 - à 25% */}
-      <div 
-        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
-        style={{ left: '25%' }}
-      />
-      {/* Trait 2 - à 50% */}
-      <div 
-        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
-        style={{ left: '50%' }}
-      />
-      {/* Trait 3 - à 75% */}
-      <div 
-        className="absolute top-0 bottom-0 w-[0.6px] bg-blanc/16"
-        style={{ left: '75%' }}
-      />
-    </div>
+  {/* Traits verticaux */}
+<div className="absolute inset-0 pointer-events-none z-0">
+  <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+    <div 
+      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+      style={{ left: '25%' }}
+    />
+    <div 
+      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+      style={{ left: '50%' }}
+    />
+    <div 
+      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+      style={{ left: '75%' }}
+    />
   </div>
+</div>
 
   <div className="container-custom relative z-10">
-    {/* Titre stylisé */}
+    {/* Titre */}
     <div className="mb-20">
       <h2 className="inline">
         <span 
-          className="text-blanc font-bold leading-[126px]"
-          style={{ fontSize: '90px', fontFamily: 'Inter' }}
+          className="text-blanc font-bold"
+          style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
         >
           Selected
         </span>
         <span 
-          className="text-blanc font-semibold italic leading-[98px] ml-4"
-          style={{ fontSize: '70px', fontFamily: 'Instrument Serif, serif' }}
+          className="text-blanc font-semibold italic ml-4"
+          style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
         >
           (Works)
         </span>
       </h2>
     </div>
 
-    {/* Liste des projets */}
+    {/* Projets */}
     <div className="space-y-32">
-      {selectedWorks.map((work, index) => (
-        <article
-          key={work.id}
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-            index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-          }`}
-        >
-          {/* Image du projet */}
-          <div
-            className={`relative aspect-[4/3] bg-gradient-to-br from-orange/20 to-rouge/20 rounded-2xl overflow-hidden group ${
-              index % 2 === 1 ? 'lg:order-2' : ''
-            }`}
-          >
-            <div className="absolute inset-0 flex items-center justify-center text-8xl">
-              🔥
-            </div>
-            {/* Ajoute tes images ici plus tard */}
-          </div>
-
-          {/* Infos du projet */}
-          <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-            <div className="flex items-start gap-8 mb-6">
-              <span className="text-6xl font-bold text-orange">
-                ( {work.number} )
-              </span>
-              <div>
-                <h3 className="text-5xl font-bold mb-8">{work.title}</h3>
-
-                <div>
-                  <p className="text-sm uppercase tracking-wider text-orange mb-3">
+  {selectedWorks.map((work, index) => {
+    // Définir le layout selon l'index
+    let layout;
+    if (index === 0) layout = 'charitio';      // Image 50-75%, Texte 75-100%
+    else if (index === 1) layout = 'multiface'; // Image 0-50%, Texte 50-75%
+    else if (index === 2) layout = 'disobey';   // Image 25-50%, Texte 50-75%
+    else if (index === 3) layout = 'comon';     // Image 0-25%, Texte 25-50%
+    else if (index === 4) layout = 'keleti';    // Image 25-75%, Texte 75-100%
+    
+    return (
+      <article key={work.id} className="relative">
+        
+        {/* DESKTOP */}
+        <div className="hidden lg:block">
+          {layout === 'charitio' && (
+            <div className="relative grid grid-cols-4 gap-0">
+              <div className="col-span-1"></div>
+              <div className="col-span-1"></div>
+              <div className="col-span-1">
+                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
+              </div>
+              <div className="col-span-1 pl-12 flex flex-col">
+                <div className="flex items-start justify-between mb-auto">
+                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                    {work.title}
+                  </h3>
+                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
+                    ( {work.number} )
+                  </span>
+                </div>
+                <div className="mt-auto">
+                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
                     Deliverables
                   </p>
                   <ul className="space-y-2">
                     {work.deliverables.map((deliverable, i) => (
-                      <li key={i} className="text-lg opacity-80">
+                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
                         {deliverable}
                       </li>
                     ))}
@@ -224,110 +236,428 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          )}
+
+          {layout === 'multiface' && (
+            <div className="relative grid grid-cols-4 gap-0">
+              <div className="col-span-2">
+                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
+              </div>
+              <div className="col-span-1 pl-12 flex flex-col">
+                <div className="flex items-start justify-between mb-auto">
+                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                    {work.title}
+                  </h3>
+                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
+                    ( {work.number} )
+                  </span>
+                </div>
+                <div className="mt-auto">
+                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+                    Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {work.deliverables.map((deliverable, i) => (
+                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="col-span-1"></div>
+            </div>
+          )}
+
+          {layout === 'disobey' && (
+            <div className="relative grid grid-cols-4 gap-0">
+              <div className="col-span-1"></div>
+              <div className="col-span-1">
+                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
+              </div>
+              <div className="col-span-1 pl-12 flex flex-col">
+                <div className="flex items-start justify-between mb-auto">
+                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                    {work.title}
+                  </h3>
+                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
+                    ( {work.number} )
+                  </span>
+                </div>
+                <div className="mt-auto">
+                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+                    Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {work.deliverables.map((deliverable, i) => (
+                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="col-span-1"></div>
+            </div>
+          )}
+
+          {layout === 'comon' && (
+            <div className="relative grid grid-cols-4 gap-0">
+              <div className="col-span-1">
+                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
+              </div>
+              <div className="col-span-1 pl-12 flex flex-col">
+                <div className="flex items-start justify-between mb-auto">
+                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                    {work.title}
+                  </h3>
+                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
+                    ( {work.number} )
+                  </span>
+                </div>
+                <div className="mt-auto">
+                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+                    Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {work.deliverables.map((deliverable, i) => (
+                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="col-span-2"></div>
+            </div>
+          )}
+
+          {layout === 'keleti' && (
+            <div className="relative grid grid-cols-4 gap-0">
+              <div className="col-span-1"></div>
+              <div className="col-span-2">
+                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
+              </div>
+              <div className="col-span-1 pl-12 flex flex-col">
+                <div className="flex items-start justify-between mb-auto">
+                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                    {work.title}
+                  </h3>
+                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
+                    ( {work.number} )
+                  </span>
+                </div>
+                <div className="mt-auto">
+                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+                    Deliverables
+                  </p>
+                  <ul className="space-y-2">
+                    {work.deliverables.map((deliverable, i) => (
+                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                        {deliverable}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* MOBILE */}
+        <div className="lg:hidden">
+          <img src={work.image} alt={work.title} className="w-full h-auto object-contain mb-6" />
+          <div className="flex items-start gap-6">
+            <span className="flex-shrink-0" style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+              ( {work.number} )
+            </span>
+            <div className="flex-1">
+              <h3 className="mb-6" style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
+                {work.title}
+              </h3>
+              <div>
+                <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+                  Deliverables
+                </p>
+                <ul className="space-y-2">
+                  {work.deliverables.map((deliverable, i) => (
+                    <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                      {deliverable}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-        </article>
+        </div>
+
+      </article>
+    );
+  })}
+</div>
+  </div>
+</section>
+      {/* SERVICES */}
+{/* SERVICES */}
+<section className="relative section-padding bg-noir overflow-hidden">
+  {/* Traits verticaux */}
+  <div className="absolute inset-0 pointer-events-none z-0">
+    <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '25%' }}
+      />
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '50%' }}
+      />
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '75%' }}
+      />
+    </div>
+  </div>
+
+  <div className="container-custom relative z-10">
+    {/* Titre */}
+    <div className="mb-20">
+      <h2 className="inline">
+        <span 
+          className="text-blanc font-bold"
+          style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
+        >
+          Services
+        </span>
+        <span 
+          className="text-blanc font-semibold italic ml-4"
+          style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
+        >
+          (yeah)
+        </span>
+      </h2>
+    </div>
+
+    {/* Liste des services */}
+    <div className="space-y-0">
+      {services.map((service, index) => (
+        <div
+          key={service.number}
+          className="group relative cursor-pointer transition-all duration-500 border-t border-orange/20 hover:border-transparent"
+          style={{
+            borderBottom: index === services.length - 1 ? '1px solid rgba(233, 70, 1, 0.2)' : 'none'
+          }}
+        >
+          {/* Fond hover avec dégradé */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{
+              background: 'linear-gradient(90deg, #FF0000 0%, #FF6F00 50%, #FF9D00 100%)'
+            }}
+          />
+
+          {/* Contenu */}
+          <div className="relative grid grid-cols-4 gap-0 min-h-[200px]">
+            {/* Numéro - Zone 1 (0-25%) */}
+            <div className="col-span-1 flex items-center py-12">
+              <span 
+                style={{
+                  color: '#F2F2F2',
+                  fontFamily: 'var(--font-inter)',
+                  fontSize: 'clamp(11.2px, 1.11vw, 16px)',
+                  fontWeight: 700,
+                  lineHeight: '140%',
+                  textTransform: 'uppercase'
+                }}
+              >
+                ( {service.number} )
+              </span>
+            </div>
+
+            {/* Titre et description - Zone 2 (25-50%) */}
+            <div className="col-span-1 pr-8 flex flex-col justify-center py-12">
+              <h3 
+                className="mb-4"
+                style={{
+                  color: '#F2F2F2',
+                  fontFamily: 'var(--font-inter)',
+                  fontSize: 'clamp(15.4px, 1.53vw, 22px)',
+                  fontWeight: 700,
+                  lineHeight: '140%',
+                  textTransform: 'uppercase'
+                }}
+              >
+                {service.title}
+              </h3>
+              <p 
+                style={{
+                  color: 'rgba(255, 255, 255, 0.70)',
+                  fontFamily: 'var(--font-inter)',
+                  fontSize: '14px',
+                  fontWeight: 300,
+                  lineHeight: '140%'
+                }}
+              >
+                {service.description}
+              </p>
+            </div>
+
+            {/* Image 1 - Zone 3 (50-75%) - Apparaît au hover */}
+            <div className="col-span-1 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {service.image1 && (
+                  <img 
+                    src={service.image1} 
+                    alt={`${service.title} 1`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* Image 2 - Zone 4 (75-100%) - Apparaît au hover */}
+            <div className="col-span-1 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {service.image2 && (
+                  <img 
+                    src={service.image2} 
+                    alt={`${service.title} 2`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   </div>
 </section>
+   {/* ABOUT ARTICHAUD */}
+<section className="relative bg-noir" id="about">
+  {/* Dégradé de fond rouge-orange en bas */}
+  <div
+    className="absolute inset-x-0 bottom-0 h-[60%] pointer-events-none"
+    style={{
+      background:
+        'linear-gradient(180deg, rgba(255,0,0,0) 0%, #FF0000 40%, #FF6F00 70%, #FF9D00 100%)',
+    }}
+  />
 
-      {/* SERVICES */}
-      <section className="section-padding bg-gradient-to-b from-noir via-orange/5 to-noir">
-        <div className="container-custom">
-          <h2 className="mb-20">
-            Services{' '}
-            <span className="font-light italic opacity-60">( yeah )</span>
-          </h2>
+ {/* 🧱 TITRE STICKY — liquid glass (iPhone-like) */}
+<div
+  className="sticky z-40 w-full top-[80px] flex items-center justify-center
+             bg-transparent
+             backdrop-saturate-150
+             backdrop-blur-[14px]"  /* flou derrière seulement */
+  style={{
+    WebkitBackdropFilter: 'blur(14px) saturate(150%)', // Safari/iOS
+  }}
+>
+  <h2
+    className="w-full text-center font-bold uppercase
+               py-6  /* léger pour que le flou suive la hauteur du titre */
+               leading-none"
+    style={{
+      fontSize: 'clamp(91px, 9.03vw, 130px)', // plus grand si tu veux
+      fontFamily: 'var(--font-inter)',
+      color: '#F2F2F2',
+      letterSpacing: '-0.02em',
+    }}
+  >
+    About artichaud
+  </h2>
+</div>
 
-          <div className="space-y-6">
-            {services.map((service) => (
-              <div
-                key={service.number}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 lg:p-12 bg-noir/50 border border-orange/20 rounded-2xl hover:border-orange hover:-translate-y-1 transition-all duration-300"
-              >
-                {/* Numéro */}
-                <div className="lg:col-span-2">
-                  <span className="text-5xl font-bold text-orange">
-                    ( {service.number} )
-                  </span>
-                </div>
 
-                {/* Titre */}
-                <div className="lg:col-span-3">
-                  <h3 className="text-2xl uppercase font-bold">
-                    {service.title}
-                  </h3>
-                </div>
+  {/* 🧭 CONTENU DÉFILANT */}
+  <div className="relative z-10 overflow-hidden">
+    {/* Polaroids */}
+    {/* Images équipe (sans cadre polaroid) */}
+<div className="relative min-h-[900px] mb-32">
+  {/* Charlotte — centrée en haut, nom à droite de l'image */}
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
+    <div className="flex items-center gap-6">
+      <img
+        src="/img/about/charlotte.jpg"
+        alt="Charlotte"
+        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
+      />
+      <p
+        className="text-blanc italic"
+        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+      >
+        ( Charlotte )
+      </p>
+    </div>
+  </div>
 
-                {/* Description */}
-                <div className="lg:col-span-7">
-                  <p className="text-blanc/70 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  {/* Clément — en dessous à droite, nom à droite de l'image */}
+  <div className="absolute top-[clamp(196px, 19.44vw, 280px)] left-[60%] z-20">
+    <div className="flex items-center gap-6">
+      <img
+        src="/img/about/Clement.jpg"
+        alt="Clément"
+        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
+      />
+      <p
+        className="text-blanc italic"
+        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+      >
+        ( Clément )
+      </p>
+    </div>
+  </div>
 
-      {/* ABOUT ARTICHAUD */}
-      <section className="section-padding bg-noir">
-        <div className="container-custom">
-          <h2 className="mb-20 text-center">About artichaud</h2>
+  {/* Arti — encore plus bas à gauche, nom à droite de l'image */}
+  <div className="absolute top-[clamp(392px, 38.89vw, 560px)] left-[25%] z-10">
+    <div className="flex items-center gap-6">
+      <img
+        src="/img/about/Polaarti.jpg"
+        alt="Arti"
+        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
+      />
+      <p
+        className="text-blanc italic"
+        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+      >
+        ( Arti )
+      </p>
+    </div>
+  </div>
+</div>
 
-          {/* Polaroids de l'équipe */}
-          <div className="flex flex-wrap justify-center gap-12 mb-20">
-            {/* Arti */}
-            <div className="animate-float" style={{ animationDelay: '0s' }}>
-              <div className="bg-blanc p-6 pb-16 rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition-all duration-300">
-                <div className="w-[250px] h-[300px] bg-gradient-to-br from-orange/30 to-rouge/30 rounded flex items-center justify-center text-7xl">
-                  🔥
-                </div>
-                <p className="text-noir text-center mt-6 font-light italic text-xl">
-                  ( Arti )
-                </p>
-              </div>
-            </div>
 
-            {/* Charlotte */}
-            <div className="animate-float" style={{ animationDelay: '1s' }}>
-              <div className="bg-blanc p-6 pb-16 rounded-lg shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-300">
-                <div className="w-[250px] h-[300px] bg-gradient-to-br from-orange/30 to-rouge/30 rounded flex items-center justify-center text-7xl">
-                  👤
-                </div>
-                <p className="text-noir text-center mt-6 font-light italic text-xl">
-                  ( Charlotte )
-                </p>
-              </div>
-            </div>
-
-            {/* Clément */}
-            <div className="animate-float" style={{ animationDelay: '2s' }}>
-              <div className="bg-blanc p-6 pb-16 rounded-lg shadow-2xl transform -rotate-2 hover:rotate-0 transition-all duration-300">
-                <div className="w-[250px] h-[300px] bg-gradient-to-br from-orange/30 to-rouge/30 rounded flex items-center justify-center text-7xl">
-                  👤
-                </div>
-                <p className="text-noir text-center mt-6 font-light italic text-xl">
-                  ( Clément )
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Mission */}
-          <div className="max-w-2xl mx-auto text-center">
-            <h4 className="text-orange uppercase tracking-wider mb-6 text-sm">
-              NOTRE MISSION
-            </h4>
-            <p className="text-xl leading-relaxed text-blanc/80">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
-            </p>
-          </div>
-        </div>
-      </section>
+    {/* Mission */}
+    <div className="relative z-10 pb-32">
+      <h4
+        className="mb-8"
+        style={{
+          color: '#F2F2F2',
+          fontFamily: 'var(--font-inter)',
+          fontSize: 'clamp(15.4px, 1.53vw, 22px)',
+          fontWeight: 700,
+          lineHeight: '140%',
+          textTransform: 'uppercase',
+        }}
+      >
+        NOTRE MISSION
+      </h4>
+      <p
+        className="max-w-4xl"
+        style={{
+          color: '#F2F2F2',
+          fontFamily: 'var(--font-inter)',
+          fontSize: 'clamp(31.5px, 3.12vw, 45px)',
+          fontWeight: 300,
+          lineHeight: '140%',
+        }}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* ACTUALITY (BLOG) */}
       <section className="section-padding bg-gradient-to-b from-noir to-orange/10">
