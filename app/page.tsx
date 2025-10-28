@@ -2,6 +2,30 @@ import HeatEffect from '@/components/HeatEffect';
 import Header from '@/components/header'; // ← AJOUTE CETTE LIGNE
 import Link from 'next/link';
 
+import Footer from '@/components/footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Artichaud Studio - Agence de Design et Marketing Digital',
+  description: 'Artichaud Studio : Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise.',
+  keywords: ['agence design', 'branding', 'webdesign', 'marketing digital', 'stratégie digitale', 'Paris'],
+  authors: [{ name: 'Artichaud Studio' }],
+  openGraph: {
+    title: 'Artichaud Studio - Agence de Design et Marketing Digital',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale.',
+    url: 'https://artichaud.studio',
+    siteName: 'Artichaud Studio',
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Artichaud Studio',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale.',
+  },
+};
+
+
 export default function Home() {
   // ... tout le reste du code
   const selectedWorks = [
@@ -58,32 +82,32 @@ const services = [
     title: 'Visual identity',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    image1: '/services/visual-identity-1.jpg',
-    image2: '/services/visual-identity-2.jpg',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
   },
   {
     number: '03',
     title: 'Webdesign',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    image1: '/services/webdesign-1.jpg',
-    image2: '/services/webdesign-2.jpg',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
   },
   {
     number: '04',
     title: 'Webmarketing',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    image1: '/services/webmarketing-1.jpg',
-    image2: '/services/webmarketing-2.jpg',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
   },
   {
     number: '05',
     title: 'Shooting produit',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    image1: '/services/shooting-1.jpg',
-    image2: '/services/shooting-2.jpg',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
   },
 ];
 
@@ -150,30 +174,29 @@ const services = [
       <div className="w-full h-[90px] bg-[#E94601]"></div>
       
      {/* SELECTED WORKS */}
-{/* SELECTED WORKS */}
 <section className="relative section-padding bg-noir overflow-hidden">
   
-  {/* Traits verticaux */}
-<div className="absolute inset-0 pointer-events-none z-0">
-  <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
-    <div 
-      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-      style={{ left: '25%' }}
-    />
-    <div 
-      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-      style={{ left: '50%' }}
-    />
-    <div 
-      className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-      style={{ left: '75%' }}
-    />
+  {/* Traits verticaux - Cachés sur mobile */}
+  <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
+    <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '26.5%' }}
+      />
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '50%' }}
+      />
+      <div 
+        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+        style={{ left: '73.5%' }}
+      />
+    </div>
   </div>
-</div>
 
   <div className="container-custom relative z-10">
     {/* Titre */}
-    <div className="mb-20">
+    <div className="mb-12 lg:mb-20">
       <h2 className="inline">
         <span 
           className="text-blanc font-bold"
@@ -182,7 +205,7 @@ const services = [
           Selected
         </span>
         <span 
-          className="text-blanc font-semibold italic ml-4"
+          className="text-blanc font-light italic ml-4"
           style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
         >
           (Works)
@@ -191,221 +214,255 @@ const services = [
     </div>
 
     {/* Projets */}
-    <div className="space-y-32">
-  {selectedWorks.map((work, index) => {
-    // Définir le layout selon l'index
-    let layout;
-    if (index === 0) layout = 'charitio';      // Image 50-75%, Texte 75-100%
-    else if (index === 1) layout = 'multiface'; // Image 0-50%, Texte 50-75%
-    else if (index === 2) layout = 'disobey';   // Image 25-50%, Texte 50-75%
-    else if (index === 3) layout = 'comon';     // Image 0-25%, Texte 25-50%
-    else if (index === 4) layout = 'keleti';    // Image 25-75%, Texte 75-100%
-    
-    return (
-      <article key={work.id} className="relative">
+    <div className="space-y-16 lg:space-y-32">
+      {selectedWorks.map((work, index) => {
+        // Définir le layout selon l'index
+        let layout;
+        if (index === 0) layout = 'charitio';      // Image 50-75%, Texte 75-100%
+        else if (index === 1) layout = 'multiface'; // Image 0-50%, Texte 50-75%
+        else if (index === 2) layout = 'disobey';   // Image 25-50%, Texte 50-75%
+        else if (index === 3) layout = 'comon';     // Image 0-25%, Texte 25-50%
+        else if (index === 4) layout = 'keleti';    // Image 25-75%, Texte 75-100%
         
-        {/* DESKTOP */}
-        <div className="hidden lg:block">
-          {layout === 'charitio' && (
-            <div className="relative grid grid-cols-4 gap-0">
-              <div className="col-span-1"></div>
-              <div className="col-span-1"></div>
-              <div className="col-span-1">
-                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
-              </div>
-              <div className="col-span-1 pl-12 flex flex-col">
-                <div className="flex items-start justify-between mb-auto">
-                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                    {work.title}
-                  </h3>
-                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
-                    ( {work.number} )
-                  </span>
-                </div>
-                <div className="mt-auto">
-                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                    Deliverables
-                  </p>
-                  <ul className="space-y-2">
-                    {work.deliverables.map((deliverable, i) => (
-                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {layout === 'multiface' && (
-            <div className="relative grid grid-cols-4 gap-0">
-              <div className="col-span-2">
-                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
-              </div>
-              <div className="col-span-1 pl-12 flex flex-col">
-                <div className="flex items-start justify-between mb-auto">
-                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                    {work.title}
-                  </h3>
-                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
-                    ( {work.number} )
-                  </span>
-                </div>
-                <div className="mt-auto">
-                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                    Deliverables
-                  </p>
-                  <ul className="space-y-2">
-                    {work.deliverables.map((deliverable, i) => (
-                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="col-span-1"></div>
-            </div>
-          )}
-
-          {layout === 'disobey' && (
-            <div className="relative grid grid-cols-4 gap-0">
-              <div className="col-span-1"></div>
-              <div className="col-span-1">
-                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
-              </div>
-              <div className="col-span-1 pl-12 flex flex-col">
-                <div className="flex items-start justify-between mb-auto">
-                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                    {work.title}
-                  </h3>
-                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
-                    ( {work.number} )
-                  </span>
-                </div>
-                <div className="mt-auto">
-                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                    Deliverables
-                  </p>
-                  <ul className="space-y-2">
-                    {work.deliverables.map((deliverable, i) => (
-                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="col-span-1"></div>
-            </div>
-          )}
-
-          {layout === 'comon' && (
-            <div className="relative grid grid-cols-4 gap-0">
-              <div className="col-span-1">
-                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
-              </div>
-              <div className="col-span-1 pl-12 flex flex-col">
-                <div className="flex items-start justify-between mb-auto">
-                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                    {work.title}
-                  </h3>
-                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
-                    ( {work.number} )
-                  </span>
-                </div>
-                <div className="mt-auto">
-                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                    Deliverables
-                  </p>
-                  <ul className="space-y-2">
-                    {work.deliverables.map((deliverable, i) => (
-                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="col-span-2"></div>
-            </div>
-          )}
-
-          {layout === 'keleti' && (
-            <div className="relative grid grid-cols-4 gap-0">
-              <div className="col-span-1"></div>
-              <div className="col-span-2">
-                <img src={work.image} alt={work.title} className="w-full h-auto object-contain" />
-              </div>
-              <div className="col-span-1 pl-12 flex flex-col">
-                <div className="flex items-start justify-between mb-auto">
-                  <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                    {work.title}
-                  </h3>
-                  <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0, textAlign: 'center'}}>
-                    ( {work.number} )
-                  </span>
-                </div>
-                <div className="mt-auto">
-                  <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                    Deliverables
-                  </p>
-                  <ul className="space-y-2">
-                    {work.deliverables.map((deliverable, i) => (
-                      <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                        {deliverable}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
+        return (
+          <article key={work.id} className="relative">
+            
+            {/* DESKTOP */}
+<div className="hidden lg:block">
+  {layout === 'charitio' && (
+    <div className="relative grid grid-cols-4 gap-0">
+      <div className="col-span-1"></div>
+      <div className="col-span-1"></div>
+      <div className="col-span-1 px-0">
+        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+      </div>
+      <div className="col-span-1 pl-6 pr-6 flex flex-col">
+        <div className="flex items-start justify-between mb-auto">
+          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
+            {work.title}
+          </h3>
+          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
+            ( {work.number} )
+          </span>
         </div>
-
-        {/* MOBILE */}
-        <div className="lg:hidden">
-          <img src={work.image} alt={work.title} className="w-full h-auto object-contain mb-6" />
-          <div className="flex items-start gap-6">
-            <span className="flex-shrink-0" style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-              ( {work.number} )
-            </span>
-            <div className="flex-1">
-              <h3 className="mb-6" style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', textAlign: 'center'}}>
-                {work.title}
-              </h3>
-              <div>
-                <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-                  Deliverables
-                </p>
-                <ul className="space-y-2">
-                  {work.deliverables.map((deliverable, i) => (
-                    <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                      {deliverable}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div className="mt-auto">
+          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+            Deliverables
+          </p>
+          <ul className="space-y-2">
+            {work.deliverables.map((deliverable, i) => (
+              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
+    </div>
+  )}
 
-      </article>
-    );
-  })}
+  {layout === 'multiface' && (
+    <div className="relative grid grid-cols-4 gap-0">
+      <div className="col-span-2 px-0">
+        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+      </div>
+      <div className="col-span-1 pl-6 pr-6 flex flex-col">
+        <div className="flex items-start justify-between mb-auto">
+          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
+            {work.title}
+          </h3>
+          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
+            ( {work.number} )
+          </span>
+        </div>
+        <div className="mt-auto">
+          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+            Deliverables
+          </p>
+          <ul className="space-y-2">
+            {work.deliverables.map((deliverable, i) => (
+              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="col-span-1"></div>
+    </div>
+  )}
+
+  {layout === 'disobey' && (
+    <div className="relative grid grid-cols-4 gap-0">
+      <div className="col-span-1"></div>
+      <div className="col-span-1 px-0">
+        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+      </div>
+      <div className="col-span-1 pl-6 pr-6 flex flex-col">
+        <div className="flex items-start justify-between mb-auto">
+          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
+            {work.title}
+          </h3>
+          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
+            ( {work.number} )
+          </span>
+        </div>
+        <div className="mt-auto">
+          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+            Deliverables
+          </p>
+          <ul className="space-y-2">
+            {work.deliverables.map((deliverable, i) => (
+              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="col-span-1"></div>
+    </div>
+  )}
+
+  {layout === 'comon' && (
+    <div className="relative grid grid-cols-4 gap-0">
+      <div className="col-span-1 px-0">
+        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+      </div>
+      <div className="col-span-1 pl-6 pr-6 flex flex-col">
+        <div className="flex items-start justify-between mb-auto">
+          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
+            {work.title}
+          </h3>
+          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
+            ( {work.number} )
+          </span>
+        </div>
+        <div className="mt-auto">
+          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+            Deliverables
+          </p>
+          <ul className="space-y-2">
+            {work.deliverables.map((deliverable, i) => (
+              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="col-span-2"></div>
+    </div>
+  )}
+
+  {layout === 'keleti' && (
+    <div className="relative grid grid-cols-4 gap-0">
+      <div className="col-span-1"></div>
+      <div className="col-span-2 px-0">
+        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+      </div>
+      <div className="col-span-1 pl-6 pr-6 flex flex-col">
+        <div className="flex items-start justify-between mb-auto">
+          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
+            {work.title}
+          </h3>
+          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
+            ( {work.number} )
+          </span>
+        </div>
+        <div className="mt-auto">
+          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
+            Deliverables
+          </p>
+          <ul className="space-y-2">
+            {work.deliverables.map((deliverable, i) => (
+              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )}
 </div>
+
+            {/* MOBILE */}
+<div className="lg:hidden bg-[#1a1a1a] rounded-lg overflow-hidden">
+  {/* Titre et Numéro au-dessus */}
+  <div className=" pb-4">
+    <div className="flex items-start justify-between">
+      <h3 style={{
+        color: '#F2F2F2', 
+        fontFamily: 'var(--font-inter)', 
+        fontSize: '14px', 
+        fontWeight: 700, 
+        lineHeight: '140%', 
+        textTransform: 'uppercase'
+      }}>
+        {work.title}
+      </h3>
+      <span style={{
+        color: '#F2F2F2', 
+        fontFamily: 'var(--font-inter)', 
+        fontSize: '14px', 
+        fontWeight: 700, 
+        lineHeight: '140%', 
+        textTransform: 'uppercase',
+        marginLeft: '16px',
+        flexShrink: 0
+      }}>
+        ( {work.number} )
+      </span>
+    </div>
+  </div>
+
+  {/* Image pleine largeur */}
+  <div className="w-full">
+    <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+  </div>
+  
+  {/* Deliverables en dessous */}
+  <div className=" pt-4">
+    <p className="mb-3" style={{
+      color: 'rgba(255, 255, 255, 0.70)', 
+      fontFamily: 'var(--font-inter)', 
+      fontSize: '11px', 
+      fontWeight: 300, 
+      lineHeight: '140%'
+    }}>
+      Deliverables
+    </p>
+    <ul className="space-y-2">
+      {work.deliverables.map((deliverable, i) => (
+        <li key={i} style={{
+          color: '#F2F2F2', 
+          fontFamily: 'var(--font-inter)', 
+          fontSize: '11px', 
+          fontWeight: 400, 
+          lineHeight: '140%', 
+          textTransform: 'uppercase'
+        }}>
+          {deliverable}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+          </article>
+        );
+      })}
+    </div>
   </div>
 </section>
-      {/* SERVICES */}
 {/* SERVICES */}
 <section className="relative section-padding bg-noir overflow-hidden">
-  {/* Traits verticaux */}
-  <div className="absolute inset-0 pointer-events-none z-0">
+<div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
     <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
       <div 
         className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '25%' }}
+        style={{ left: '26.5%' }}
       />
       <div 
         className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
@@ -413,14 +470,15 @@ const services = [
       />
       <div 
         className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '75%' }}
+        style={{ left: '73.5%' }}
       />
     </div>
   </div>
 
+
   <div className="container-custom relative z-10">
     {/* Titre */}
-    <div className="mb-20">
+    <div className="mb-12 lg:mb-20">
       <h2 className="inline">
         <span 
           className="text-blanc font-bold"
@@ -429,7 +487,7 @@ const services = [
           Services
         </span>
         <span 
-          className="text-blanc font-semibold italic ml-4"
+          className="text-blanc font-light italic ml-4"
           style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
         >
           (yeah)
@@ -442,7 +500,7 @@ const services = [
       {services.map((service, index) => (
         <div
           key={service.number}
-          className="group relative cursor-pointer transition-all duration-500 border-t border-orange/20 hover:border-transparent"
+          className="group relative cursor-pointer transition-all duration-500 border-t border-blanc/20 hover:border-transparent"
           style={{
             borderBottom: index === services.length - 1 ? '1px solid rgba(233, 70, 1, 0.2)' : 'none'
           }}
@@ -456,39 +514,114 @@ const services = [
           />
 
           {/* Contenu */}
-          <div className="relative grid grid-cols-4 gap-0 min-h-[200px]">
-            {/* Numéro - Zone 1 (0-25%) */}
-            <div className="col-span-1 flex items-center py-12">
-              <span 
-                style={{
-                  color: '#F2F2F2',
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: 'clamp(11.2px, 1.11vw, 16px)',
-                  fontWeight: 700,
-                  lineHeight: '140%',
-                  textTransform: 'uppercase'
-                }}
-              >
-                ( {service.number} )
-              </span>
+          <div className="relative">
+            {/* Layout Desktop - Grid 4 colonnes */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-0 min-h-[200px]">
+              {/* Numéro - Zone 1 (0-25%) */}
+              <div className="col-span-1 flex items-start py-12 pl-8">
+                <span 
+                  style={{
+                    color: '#F2F2F2',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: 'clamp(11.2px, 1.11vw, 16px)',
+                    fontWeight: 700,
+                    lineHeight: '140%',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  ( {service.number} )
+                </span>
+              </div>
+
+              {/* Titre et description - Zone 2 (25-50%) */}
+              <div className="col-span-1 pr-8 flex flex-col justify-start py-12">
+                <h3 
+                  className="mb-4"
+                  style={{
+                    color: '#F2F2F2',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: 'clamp(15.4px, 1.53vw, 22px)',
+                    fontWeight: 700,
+                    lineHeight: '140%',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  {service.title}
+                </h3>
+                <p 
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.70)',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: '14px',
+                    fontWeight: 300,
+                    lineHeight: '140%'
+                  }}
+                >
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Image 1 - Zone 3 (50-75%) - Apparaît au hover */}
+              <div className="col-span-1 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {service.image1 && (
+                    <img 
+                      src={service.image1} 
+                      alt={`${service.title} 1`}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Image 2 - Zone 4 (75-100%) - Apparaît au hover */}
+              <div className="col-span-1 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {service.image2 && (
+                    <img 
+                      src={service.image2} 
+                      alt={`${service.title} 2`}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* Titre et description - Zone 2 (25-50%) */}
-            <div className="col-span-1 pr-8 flex flex-col justify-center py-12">
-              <h3 
-                className="mb-4"
-                style={{
-                  color: '#F2F2F2',
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: 'clamp(15.4px, 1.53vw, 22px)',
-                  fontWeight: 700,
-                  lineHeight: '140%',
-                  textTransform: 'uppercase'
-                }}
-              >
-                {service.title}
-              </h3>
+            {/* Layout Mobile - Empilement vertical */}
+            <div className="lg:hidden py-8 px-4">
+              {/* Numéro et Titre sur la même ligne */}
+              <div className="flex items-start gap-4 mb-4">
+                <span 
+                  style={{
+                    color: '#F2F2F2',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    lineHeight: '140%',
+                    textTransform: 'uppercase',
+                    flexShrink: 0
+                  }}
+                >
+                  ( {service.number} )
+                </span>
+                <h3 
+                  style={{
+                    color: '#F2F2F2',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: '16px',
+                    fontWeight: 700,
+                    lineHeight: '140%',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  {service.title}
+                </h3>
+              </div>
+
+              {/* Description */}
               <p 
+                className="pl-0"
                 style={{
                   color: 'rgba(255, 255, 255, 0.70)',
                   fontFamily: 'var(--font-inter)',
@@ -500,141 +633,145 @@ const services = [
                 {service.description}
               </p>
             </div>
-
-            {/* Image 1 - Zone 3 (50-75%) - Apparaît au hover */}
-            <div className="col-span-1 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                {service.image1 && (
-                  <img 
-                    src={service.image1} 
-                    alt={`${service.title} 1`}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-            </div>
-
-            {/* Image 2 - Zone 4 (75-100%) - Apparaît au hover */}
-            <div className="col-span-1 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                {service.image2 && (
-                  <img 
-                    src={service.image2} 
-                    alt={`${service.title} 2`}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-            </div>
           </div>
         </div>
       ))}
     </div>
   </div>
-</section>
-   {/* ABOUT ARTICHAUD */}
+</section>{/* ABOUT ARTICHAUD */}
 <section className="relative bg-noir" id="about">
   {/* Dégradé de fond rouge-orange en bas */}
   <div
-    className="absolute inset-x-0 bottom-0 h-[60%] pointer-events-none"
+    className="absolute inset-x-0 bottom-0 h-[40%] pointer-events-none"
     style={{
       background:
         'linear-gradient(180deg, rgba(255,0,0,0) 0%, #FF0000 40%, #FF6F00 70%, #FF9D00 100%)',
     }}
   />
 
- {/* 🧱 TITRE STICKY — liquid glass (iPhone-like) */}
-<div
-  className="sticky z-40 w-full top-[80px] flex items-center justify-center
-             bg-transparent
-             backdrop-saturate-150
-             backdrop-blur-[14px]"  /* flou derrière seulement */
-  style={{
-    WebkitBackdropFilter: 'blur(14px) saturate(150%)', // Safari/iOS
-  }}
->
-  <h2
-    className="w-full text-center font-bold uppercase
-               py-6  /* léger pour que le flou suive la hauteur du titre */
-               leading-none"
+  {/* 🧱 TITRE STICKY — effet liquid glass (iPhone-like) */}
+  <div
+    className="sticky z-40 w-full top-[80px] flex items-center justify-center
+               bg-transparent
+               backdrop-saturate-150
+               backdrop-blur-[14px]"
     style={{
-      fontSize: 'clamp(91px, 9.03vw, 130px)', // plus grand si tu veux
-      fontFamily: 'var(--font-inter)',
-      color: '#F2F2F2',
-      letterSpacing: '-0.02em',
+      WebkitBackdropFilter: 'blur(14px) saturate(150%)',
     }}
   >
-    About artichaud
-  </h2>
-</div>
-
+    <h2
+      className="w-full text-center font-bold uppercase
+                 py-6
+                 leading-none"
+      style={{
+        fontSize: 'clamp(91px, 9.03vw, 130px)',
+        fontFamily: 'var(--font-inter)',
+        color: '#F2F2F2',
+        letterSpacing: '-0.02em',
+      }}
+    >
+      About artichaud
+    </h2>
+  </div>
 
   {/* 🧭 CONTENU DÉFILANT */}
   <div className="relative z-10 overflow-hidden">
-    {/* Polaroids */}
-    {/* Images équipe (sans cadre polaroid) */}
-<div className="relative min-h-[900px] mb-32">
-  {/* Charlotte — centrée en haut, nom à droite de l'image */}
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
-    <div className="flex items-center gap-6">
-      <img
-        src="/img/about/charlotte.jpg"
-        alt="Charlotte"
-        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
-      />
-      <p
-        className="text-blanc italic"
-        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+    {/* Polaroids positionnés en cascade */}
+    <div className="relative min-h-[1400px] px-[clamp(1rem,3vw,3rem)] mb-20">
+
+      {/* Charlotte */}
+      <div
+        className="absolute z-30"
+        style={{
+          top: 'clamp(40px, 5vw, 80px)',
+          left: '25%',
+          transform: 'rotate(3deg)',
+        }}
       >
-        ( Charlotte )
-      </p>
-    </div>
-  </div>
+        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+          <img
+            src="/img/about/charlotte.jpg"
+            alt="Charlotte"
+            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+          />
+          <p
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            style={{
+              fontFamily: 'var(--font-instrument)',
+              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              color: '#000',
+            }}
+          >
+            ( Charlotte )
+          </p>
+        </div>
+      </div>
 
-  {/* Clément — en dessous à droite, nom à droite de l'image */}
-  <div className="absolute top-[clamp(196px, 19.44vw, 280px)] left-[60%] z-20">
-    <div className="flex items-center gap-6">
-      <img
-        src="/img/about/Clement.jpg"
-        alt="Clément"
-        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
-      />
-      <p
-        className="text-blanc italic"
-        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+      {/* Clément */}
+      <div
+        className="absolute z-20"
+        style={{
+          top: 'clamp(280px, 28vw, 400px)',
+          left: '52%',
+          transform: 'rotate(8deg)',
+        }}
       >
-        ( Clément )
-      </p>
-    </div>
-  </div>
+        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+          <img
+            src="/img/about/Clement.jpg"
+            alt="Clément"
+            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+          />
+          <p
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            style={{
+              fontFamily: 'var(--font-instrument)',
+              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              color: '#000',
+            }}
+          >
+            ( Clément )
+          </p>
+        </div>
+      </div>
 
-  {/* Arti — encore plus bas à gauche, nom à droite de l'image */}
-  <div className="absolute top-[clamp(392px, 38.89vw, 560px)] left-[25%] z-10">
-    <div className="flex items-center gap-6">
-      <img
-        src="/img/about/Polaarti.jpg"
-        alt="Arti"
-        className="w-[clamp(175px, 17.36vw, 250px)] h-[clamp(210px, 20.83vw, 300px)] object-cover rounded-md"
-      />
-      <p
-        className="text-blanc italic"
-        style={{ fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14.0px, 1.39vw, 20px)' }}
+      {/* Arti */}
+      <div
+        className="absolute z-10"
+        style={{
+          top: 'clamp(520px, 52vw, 750px)',
+          left: '18%',
+          transform: 'rotate(-12deg)',
+        }}
       >
-        ( Arti )
-      </p>
+        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+          <img
+            src="/img/about/Polaarti.jpg"
+            alt="Arti"
+            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+          />
+          <p
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            style={{
+              fontFamily: 'var(--font-instrument)',
+              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              color: '#000',
+            }}
+          >
+            ( Arti )
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-
-    {/* Mission */}
-    <div className="relative z-10 pb-32">
+    {/* Bloc Mission */}
+    <div className="relative z-10 pb-32 px-[clamp(1rem,3vw,3rem)]">
       <h4
-        className="mb-8"
+        className="mb-6"
         style={{
           color: '#F2F2F2',
           fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(15.4px, 1.53vw, 22px)',
+          fontSize: 'clamp(13px, 1.25vw, 18px)',
           fontWeight: 700,
           lineHeight: '140%',
           textTransform: 'uppercase',
@@ -643,11 +780,11 @@ const services = [
         NOTRE MISSION
       </h4>
       <p
-        className="max-w-4xl"
+        className="max-w-2xl"
         style={{
           color: '#F2F2F2',
           fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(31.5px, 3.12vw, 45px)',
+          fontSize: 'clamp(16px, 1.53vw, 22px)',
           fontWeight: 300,
           lineHeight: '140%',
         }}
@@ -658,6 +795,7 @@ const services = [
     </div>
   </div>
 </section>
+
 
       {/* ACTUALITY (BLOG) */}
       <section className="section-padding bg-gradient-to-b from-noir to-orange/10">
@@ -703,116 +841,7 @@ const services = [
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-orange text-blanc section-padding">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            {/* Explore */}
-            <div>
-              <h5 className="text-sm uppercase tracking-wider mb-6 font-bold">
-                EXPLORE
-              </h5>
-              <nav className="flex flex-col gap-3">
-                <Link
-                  href="/works"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Work
-                </Link>
-                <Link
-                  href="/about"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  About
-                </Link>
-                <Link
-                  href="/services"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/blog"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Blog
-                </Link>
-                <Link
-                  href="/contact"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Contact
-                </Link>
-              </nav>
-            </div>
-
-            {/* Stalk us */}
-            <div>
-              <h5 className="text-sm uppercase tracking-wider mb-6 font-bold">
-                STALK US
-              </h5>
-              <nav className="flex flex-col gap-3">
-                <a
-                  href="#"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="#"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Tiktok
-                </a>
-                <a
-                  href="#"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="#"
-                  className="hover:translate-x-2 transition-transform"
-                >
-                  Pinterest
-                </a>
-              </nav>
-            </div>
-
-            {/* Say hello */}
-            <div className="md:col-span-2">
-              <h5 className="text-sm uppercase tracking-wider mb-6 font-bold">
-                SAY HELLO
-              </h5>
-              <a
-                href="mailto:artichaud.studio@gmail.com"
-                className="hover:underline text-lg break-all"
-              >
-                artichaud.studio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          {/* Bottom Footer */}
-          <div className="pt-8 border-t border-blanc/30 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex gap-4 text-sm">
-              <button className="font-bold hover:underline">FR</button>
-              <span>/</span>
-              <button className="opacity-70 hover:underline">EN</button>
-            </div>
-
-            <div className="text-center">
-              <p className="text-2xl font-light italic">
-                Mettez le feu à vos projets 🔥
-              </p>
-            </div>
-
-            <div className="w-12 h-12 bg-blanc rounded-full flex items-center justify-center">
-              <span className="text-2xl">🔥</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       {/* Script pour faire disparaître le texte au scroll */}
       <script
         dangerouslySetInnerHTML={{
