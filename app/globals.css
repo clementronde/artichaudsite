@@ -61,3 +61,35 @@
     @apply font-light italic;
   }
 }
+
+/* Mode sombre pour les articles */
+.dark-mode {
+  --color-bg: #1A1A1A;
+  --color-text: #F2F2F2;
+  --color-border: rgba(242, 242, 242, 0.1);
+}
+
+.dark-mode main {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p {
+  color: var(--color-text) !important;
+}
+
+.dark-mode .border-noir\/10 {
+  border-color: var(--color-border);
+}
+
+.dark-mode article {
+  background-color: rgba(242, 242, 242, 0.05);
+}
+
+/* Transition fluide */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
