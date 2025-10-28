@@ -677,28 +677,27 @@ const services = [
   {/* 🧭 CONTENU DÉFILANT */}
   <div className="relative z-10 overflow-hidden">
     {/* Polaroids positionnés en cascade */}
-    <div className="relative min-h-[1400px] px-[clamp(1rem,3vw,3rem)] mb-20">
+    <div className="relative min-h-[800px] lg:min-h-[1400px] px-[clamp(1rem,3vw,3rem)] mb-20">
 
       {/* Charlotte */}
       <div
-        className="absolute z-30"
+        className="absolute z-30 left-1/2 -translate-x-1/2 lg:left-[25%] lg:translate-x-0"
         style={{
           top: 'clamp(40px, 5vw, 80px)',
-          left: '25%',
-          transform: 'rotate(3deg)',
+          transform: 'translateX(-50%) rotate(3deg)',
         }}
       >
         <div className="relative bg-white p-4 pb-16 shadow-2xl">
           <img
             src="/img/about/charlotte.jpg"
             alt="Charlotte"
-            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
           />
           <p
             className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              fontSize: 'clamp(14px, 1.18vw, 17px)',
               color: '#000',
             }}
           >
@@ -709,24 +708,23 @@ const services = [
 
       {/* Clément */}
       <div
-        className="absolute z-20"
+        className="absolute z-20 left-1/2 -translate-x-1/2 lg:left-[52%] lg:translate-x-0"
         style={{
-          top: 'clamp(280px, 28vw, 400px)',
-          left: '52%',
-          transform: 'rotate(8deg)',
+          top: 'clamp(300px, 35vw, 400px)',
+          transform: 'translateX(-50%) rotate(8deg)',
         }}
       >
         <div className="relative bg-white p-4 pb-16 shadow-2xl">
           <img
             src="/img/about/Clement.jpg"
             alt="Clément"
-            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
           />
           <p
             className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              fontSize: 'clamp(14px, 1.18vw, 17px)',
               color: '#000',
             }}
           >
@@ -737,24 +735,23 @@ const services = [
 
       {/* Arti */}
       <div
-        className="absolute z-10"
+        className="absolute z-10 left-1/2 -translate-x-1/2 lg:left-[18%] lg:translate-x-0"
         style={{
-          top: 'clamp(520px, 52vw, 750px)',
-          left: '18%',
-          transform: 'rotate(-12deg)',
+          top: 'clamp(560px, 65vw, 750px)',
+          transform: 'translateX(-50%) rotate(-12deg)',
         }}
       >
         <div className="relative bg-white p-4 pb-16 shadow-2xl">
           <img
             src="/img/about/Polaarti.jpg"
             alt="Arti"
-            className="w-[clamp(150px, 14.58vw, 210px)] h-[clamp(180px, 17.36vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
           />
           <p
             className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(12px, 1.18vw, 17px)',
+              fontSize: 'clamp(14px, 1.18vw, 17px)',
               color: '#000',
             }}
           >
