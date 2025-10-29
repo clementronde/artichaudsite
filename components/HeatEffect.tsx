@@ -32,9 +32,12 @@ export default function HeatEffect({ className }: Props) {
       vx: number;
       vy: number;
       o: number;
+      phase: number; // pour l'effet de vague
+      waveSpeed: number; // vitesse de l'ondulation
+      color: number; // 0=rouge profond, 1=orange, 2=jaune-orange
     };
     const blobs: Blob[] = [];
-    const COUNT = 6;
+    const COUNT = 12; // augmenté de 6 à 12 pour plus de présence
     const init = () => {
       blobs.length = 0;
       const w = canvas.width / dpr,
@@ -42,11 +45,14 @@ export default function HeatEffect({ className }: Props) {
       for (let i = 0; i < COUNT; i++) {
         blobs.push({
           x: Math.random() * w,
-          y: h * (0.6 + Math.random() * 0.5), // concentrés vers le bas
-          r: 400 + Math.random() * 300,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.4) * 0.2,
-          o: 0.35 + Math.random() * 0.25,
+          y: h * (0.5 + Math.random() * 0.6), // réparti plus bas
+          r: 350 + Math.random() * 400, // blobs plus grands
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.6) * 0.3, // tendance à monter
+          o: 0.5 + Math.random() * 0.35, // opacité augmentée
+          phase: Math.random() * Math.PI * 2, // phase aléatoire pour les vagues
+          waveSpeed: 0.8 + Math.random() * 0.6,
+          color: Math.floor(Math.random() * 3), // variation de couleur
         });
       }
     };
@@ -105,19 +111,30 @@ export default function HeatEffect({ className }: Props) {
       gustTarget = Math.max(0, gustTarget - 0.08);
 
       // update blobs
+      const time = Date.now() * 0.001;
       for (const b of blobs) {
-        const turbulence = Math.sin(Date.now() * 0.001 + b.x * 0.01) * 0.05;
-        b.vx += turbulence;
-        b.vy += Math.cos(Date.now() * 0.001 + b.y * 0.01) * 0.03;
+        // Effet de vague de chaleur montante - mouvement ondulatoire
+        b.phase += 0.015 * b.waveSpeed;
+        const waveX = Math.sin(b.phase + b.y * 0.005) * 1.2; // ondulation horizontale
+        const waveY = Math.sin(b.phase * 0.7) * 0.8; // pulsation verticale
+        const heatRise = -0.15; // force de montée constante (chaleur monte)
+
+        // Turbulence améliorée pour effet vague de chaud
+        const turbulenceX = Math.sin(time * 0.8 + b.x * 0.008 + b.phase) * 0.15;
+        const turbulenceY = Math.cos(time * 0.6 + b.y * 0.006 + b.phase) * 0.12;
+
+        b.vx += turbulenceX + waveX * 0.08;
+        b.vy += turbulenceY + waveY * 0.06 + heatRise; // ajoute la montée
+
         // force de vent radiale depuis la souris
         if (gust > 0.001) {
           const dx = b.x - mouse.x;
           const dy = b.y - mouse.y;
           const dist2 = dx * dx + dy * dy;
-          // zone d’influence (rayon ~ 280..420 px selon gust)
-          const influence = 150 + gust * 80;
-          const sigma2 = influence * influence; // gaussienne simple
-          const falloff = Math.exp(-dist2 / (2 * sigma2)); // 0..1
+          // zone d'influence augmentée
+          const influence = 180 + gust * 100;
+          const sigma2 = influence * influence;
+          const falloff = Math.exp(-dist2 / (2 * sigma2));
 
           // direction normalisée
           let nx = dx,
@@ -126,10 +143,10 @@ export default function HeatEffect({ className }: Props) {
           nx /= len;
           ny /= len;
 
-          // impulse (plus gust est fort, plus on pousse)
-          const push = (0.9 + b.r / 1200) * gust * falloff * 1.6; // ajusté au rayon
-          b.vx += nx * push * 0.6;
-          b.vy += ny * push * 0.6;
+          // impulse plus fort pour un effet plus satisfaisant
+          const push = (1.2 + b.r / 1000) * gust * falloff * 2.0;
+          b.vx += nx * push * 0.7;
+          b.vy += ny * push * 0.7;
         }
 
         // dynamique naturelle
@@ -137,12 +154,17 @@ export default function HeatEffect({ className }: Props) {
         b.y += b.vy;
 
         // friction légère
-        b.vx *= 0.92;
-        b.vy *= 0.92;
+        b.vx *= 0.90;
+        b.vy *= 0.90;
 
-        // rebonds doux (zone utile: 35%–115% hauteur)
+        // Rebonds avec recyclage des blobs qui montent trop haut
         if (b.x < -b.r || b.x > w + b.r) b.vx *= -1;
-        if (b.y < h * 0.35 || b.y > h + b.r * 0.25) b.vy *= -1;
+        if (b.y < -b.r) {
+          // Réapparaît en bas quand monte trop haut (effet continu de chaleur)
+          b.y = h + b.r * 0.5;
+          b.x = Math.random() * w;
+        }
+        if (b.y > h + b.r * 0.5) b.vy *= -1;
       }
 
       // DRAW
@@ -153,19 +175,39 @@ export default function HeatEffect({ className }: Props) {
       ctx.globalCompositeOperation = 'lighter';
       for (const b of blobs) {
         const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-        g.addColorStop(0, `rgba(255,140,60,${b.o * 1.2})`);      // ← Plus intense au centre
-        g.addColorStop(0.45, `rgba(255,95,25,${b.o * 0.75})`);   // ← Plus visible au milieu
-        g.addColorStop(1, 'rgba(255,60,0,0)');
+
+        // Variation de couleurs selon le type de blob (rouge profond, orange, jaune-orange)
+        let centerColor, midColor, edgeColor;
+        if (b.color === 0) {
+          // Rouge profond intense
+          centerColor = `rgba(255,80,20,${b.o * 1.5})`;
+          midColor = `rgba(255,60,10,${b.o * 0.9})`;
+          edgeColor = 'rgba(200,40,0,0)';
+        } else if (b.color === 1) {
+          // Orange vif
+          centerColor = `rgba(255,140,30,${b.o * 1.4})`;
+          midColor = `rgba(255,100,20,${b.o * 0.85})`;
+          edgeColor = 'rgba(255,80,0,0)';
+        } else {
+          // Jaune-orange (zones les plus chaudes)
+          centerColor = `rgba(255,180,60,${b.o * 1.3})`;
+          midColor = `rgba(255,130,40,${b.o * 0.8})`;
+          edgeColor = 'rgba(255,100,0,0)';
+        }
+
+        g.addColorStop(0, centerColor);
+        g.addColorStop(0.4, midColor);
+        g.addColorStop(1, edgeColor);
         ctx.fillStyle = g;
         ctx.fillRect(b.x - b.r, b.y - b.r, b.r * 2, b.r * 2);
       }
 
-      // 2) “souffle” local : on perce un trou (destination-out) centré sur la souris
+      // 2) "souffle" local : on perce un trou (destination-out) centré sur la souris
       if (gust > 0.01) {
         // @ts-ignore
         ctx.globalCompositeOperation = 'destination-out';
-        const r0 = 80 + gust * 80; // coeur complètement "éteint"
-        const r1 = r0 + 160 + gust * 120; // dégradé doux vers la chaleur
+        const r0 = 100 + gust * 100; // trou plus grand au centre
+        const r1 = r0 + 200 + gust * 150; // dégradé plus étendu
         const mg = ctx.createRadialGradient(
           mouse.x,
           mouse.y,
@@ -174,7 +216,8 @@ export default function HeatEffect({ className }: Props) {
           mouse.y,
           r1
         );
-        mg.addColorStop(0.0, 'rgba(0,0,0,0.95)');
+        mg.addColorStop(0.0, 'rgba(0,0,0,1.0)'); // trou bien net
+        mg.addColorStop(0.7, 'rgba(0,0,0,0.3)'); // transition progressive
         mg.addColorStop(1.0, 'rgba(0,0,0,0)');
         ctx.fillStyle = mg;
         ctx.beginPath();
@@ -203,9 +246,12 @@ export default function HeatEffect({ className }: Props) {
     <canvas
       ref={canvasRef}
       // ⚠️ laissons le canvas recevoir les events souris (donc PAS pointer-events-none)
-      className={`absolute inset-0 w-full h-full filter blur-[80px] ${
+      className={`absolute inset-0 w-full h-full filter blur-[60px] saturate-150 ${
         className ?? ''
       }`}
+      style={{
+        WebkitFilter: 'blur(60px) saturate(1.5)',
+      }}
     />
   );
 }
