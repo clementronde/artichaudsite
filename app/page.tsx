@@ -1,7 +1,7 @@
 import HeatEffect from '@/components/HeatEffect';
 import Header from '@/components/header'; // ← AJOUTE CETTE LIGNE
 import Link from 'next/link';
-
+import { getLatestPosts } from '@/lib/blog';
 import Footer from '@/components/footer';
 import type { Metadata } from 'next';
 
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   // ... tout le reste du code
+    const latestPosts = getLatestPosts(2);
+  
+
   const selectedWorks = [
     {
       id: 1,
@@ -640,34 +643,123 @@ const services = [
   </div>
 </section>{/* ABOUT ARTICHAUD */}
 <section className="relative bg-noir" id="about">
-  {/* Dégradé de fond rouge-orange en bas */}
+  {/* Ellipses rouges et orange en fond */}
+<div className="absolute inset-0 pointer-events-none overflow-hidden">
+  {/* Ellipses rouges en haut */}
   <div
-    className="absolute inset-x-0 bottom-0 h-[40%] pointer-events-none"
+    className="absolute"
     style={{
-      background:
-        'linear-gradient(180deg, rgba(255,0,0,0) 0%, #FF0000 40%, #FF6F00 70%, #FF9D00 100%)',
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#F00',
+      filter: 'blur(200px)',
+      left: '20%',
+      top: '10%',
     }}
   />
+  <div
+    className="absolute"
+    style={{
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#F00',
+      filter: 'blur(200px)',
+      right: '15%',
+      top: '15%',
+    }}
+  />
+  
+  {/* Ellipses rouges à gauche en bas */}
+  <div
+    className="absolute"
+    style={{
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#F00',
+      filter: 'blur(200px)',
+      left: '5%',
+      bottom: '10%',
+    }}
+  />
+  <div
+    className="absolute"
+    style={{
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#F00',
+      filter: 'blur(200px)',
+      left: '15%',
+      bottom: '5%',
+    }}
+  />
+  
+  {/* Ellipses orange à droite en bas */}
+  <div
+    className="absolute"
+    style={{
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#FF6F00',
+      filter: 'blur(200px)',
+      right: '10%',
+      bottom: '15%',
+    }}
+  />
+  <div
+    className="absolute"
+    style={{
+      width: '611px',
+      height: '611px',
+      borderRadius: '611.144px',
+      background: '#FF9D00',
+      filter: 'blur(200px)',
+      right: '5%',
+      bottom: '5%',
+    }}
+  />
+</div>
 
-  {/* 🧱 TITRE STICKY — effet liquid glass (iPhone-like) */}
+  {/* 🧱 TITRE STICKY — effet liquid glass (iPhone-like) avec gradient */}
   <div
     className="sticky z-40 w-full top-[80px] flex items-center justify-center
-               bg-transparent
-               backdrop-saturate-150
-               backdrop-blur-[14px]"
-    style={{
-      WebkitBackdropFilter: 'blur(14px) saturate(150%)',
-    }}
+               overflow-hidden"
   >
-    <h2
-      className="w-full text-center font-bold uppercase
-                 py-6
-                 leading-none"
+    {/* Layer avec liquid glass fort en haut */}
+    <div
+      className="absolute inset-0"
       style={{
-        fontSize: 'clamp(91px, 9.03vw, 130px)',
+        background: 'linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%)',
+        backdropFilter: 'blur(14px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(14px) saturate(150%)',
+      }}
+    />
+    
+    {/* Layer avec liquid glass faible en bas */}
+    <div
+      className="absolute inset-0"
+      style={{
+        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%)',
+        backdropFilter: 'blur(4px) saturate(110%)',
+        WebkitBackdropFilter: 'blur(4px) saturate(110%)',
+      }}
+    />
+
+    <h2
+      className="relative w-full text-center font-bold uppercase
+                 py-6 px-4
+                 leading-[0.9]"
+      style={{
+        fontSize: 'clamp(32px, 9.03vw, 130px)',
         fontFamily: 'var(--font-inter)',
         color: '#F2F2F2',
         letterSpacing: '-0.02em',
+        wordBreak: 'keep-all',
+        whiteSpace: 'nowrap',
       }}
     >
       About artichaud
@@ -681,24 +773,42 @@ const services = [
 
       {/* Charlotte */}
       <div
-        className="absolute z-30 left-1/2 -translate-x-1/2 lg:left-[25%] lg:translate-x-0"
+        className="absolute z-30"
         style={{
+          left: 'clamp(5%, 25%, 25%)',
           top: 'clamp(40px, 5vw, 80px)',
-          transform: 'translateX(-50%) rotate(3deg)',
         }}
       >
-        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+        <div className="relative inline-block">
           <img
-            src="/img/about/charlotte.jpg"
+            src="/img/about/charlotte.png"
             alt="Charlotte"
-            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 250px)] h-auto shadow-2xl"
+            style={{ transform: 'rotate(3deg)' }}
           />
+          {/* Prénom mobile - sous la photo */}
           <p
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            className="absolute lg:hidden italic text-center w-full"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 1.18vw, 17px)',
-              color: '#000',
+              fontSize: 'clamp(14px, 3.5vw, 18px)',
+              color: '#F2F2F2',
+              bottom: 'clamp(12px, 3vw, 20px)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            ( Charlotte )
+          </p>
+          {/* Prénom desktop - à droite */}
+          <p
+            className="hidden lg:block absolute italic"
+            style={{
+              fontFamily: 'var(--font-instrument)',
+              fontSize: 'clamp(18px, 1.8vw, 26px)',
+              color: '#F2F2F2',
+              left: '110%',
+              top: '0%',
+              whiteSpace: 'nowrap',
             }}
           >
             ( Charlotte )
@@ -708,24 +818,42 @@ const services = [
 
       {/* Clément */}
       <div
-        className="absolute z-20 left-1/2 -translate-x-1/2 lg:left-[52%] lg:translate-x-0"
+        className="absolute z-20"
         style={{
-          top: 'clamp(300px, 35vw, 400px)',
-          transform: 'translateX(-50%) rotate(8deg)',
+          left: 'clamp(10%, 50%, 52%)',
+          top: 'clamp(250px, 35vw, 400px)',
         }}
       >
-        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+        <div className="relative inline-block">
           <img
-            src="/img/about/Clement.jpg"
+            src="/img/about/Clement.png"
             alt="Clément"
-            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 280px)] h-auto shadow-2xl"
+            style={{ transform: 'rotate(8deg)' }}
           />
+          {/* Prénom mobile - sous la photo */}
           <p
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            className="absolute lg:hidden italic text-center w-full"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 1.18vw, 17px)',
-              color: '#000',
+              fontSize: 'clamp(14px, 3.5vw, 18px)',
+              color: '#F2F2F2',
+              bottom: 'clamp(12px, 3vw, 20px)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            ( Clément )
+          </p>
+          {/* Prénom desktop - à droite */}
+          <p
+            className="hidden lg:block absolute italic"
+            style={{
+              fontFamily: 'var(--font-instrument)',
+              fontSize: 'clamp(18px, 1.8vw, 26px)',
+              color: '#F2F2F2',
+              left: '110%',
+              top: '5%',
+              whiteSpace: 'nowrap',
             }}
           >
             ( Clément )
@@ -735,24 +863,28 @@ const services = [
 
       {/* Arti */}
       <div
-        className="absolute z-10 left-1/2 -translate-x-1/2 lg:left-[18%] lg:translate-x-0"
+        className="absolute z-10"
         style={{
-          top: 'clamp(560px, 65vw, 750px)',
-          transform: 'translateX(-50%) rotate(-12deg)',
+          left: 'clamp(5%, 18%, 18%)',
+          top: 'clamp(480px, 65vw, 750px)',
         }}
       >
-        <div className="relative bg-white p-4 pb-16 shadow-2xl">
+        <div className="relative inline-block">
           <img
-            src="/img/about/Polaarti.jpg"
+            src="/img/about/Polaarti.png"
             alt="Arti"
-            className="w-[clamp(180px, 20vw, 210px)] h-[clamp(220px, 25vw, 250px)] object-cover"
+            className="w-[clamp(180px, 20vw, 220px)] h-auto shadow-2xl"
+            style={{ transform: 'rotate(-12deg)' }}
           />
+          {/* Prénom mobile - sous la photo */}
           <p
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center italic"
+            className="absolute lg:hidden italic text-center w-full"
             style={{
               fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 1.18vw, 17px)',
-              color: '#000',
+              fontSize: 'clamp(14px, 3.5vw, 18px)',
+              color: '#F2F2F2',
+              bottom: 'clamp(12px, 3vw, 20px)',
+              whiteSpace: 'nowrap',
             }}
           >
             ( Arti )
@@ -764,11 +896,11 @@ const services = [
     {/* Bloc Mission */}
     <div className="relative z-10 pb-32 px-[clamp(1rem,3vw,3rem)]">
       <h4
-        className="mb-6"
+        className="mb-6 pl-36 pr-36"
         style={{
           color: '#F2F2F2',
           fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(13px, 1.25vw, 18px)',
+          fontSize: 'clamp(22px, 1.25vw, 18px)',
           fontWeight: 700,
           lineHeight: '140%',
           textTransform: 'uppercase',
@@ -777,11 +909,11 @@ const services = [
         NOTRE MISSION
       </h4>
       <p
-        className="max-w-2xl"
+        className="pl-36 pr-36"
         style={{
           color: '#F2F2F2',
           fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(16px, 1.53vw, 22px)',
+          fontSize: 'clamp(45px, 1.53vw, 22px)',
           fontWeight: 300,
           lineHeight: '140%',
         }}
@@ -792,48 +924,73 @@ const services = [
     </div>
   </div>
 </section>
-
-
       {/* ACTUALITY (BLOG) */}
-      <section className="section-padding bg-gradient-to-b from-noir to-orange/10">
+      <section className="relative section-padding bg-noir overflow-hidden">
         <div className="container-custom">
-          <h2 className="mb-20">
-            Actuality{' '}
-            <span className="font-light italic opacity-60">( crousti )</span>
-          </h2>
+          {/* Titre */}
+          <div className="mb-12 lg:mb-20">
+            <h2 className="inline">
+              <span 
+                className="text-blanc font-bold"
+                style={{ 
+                  fontSize: 'clamp(63px, 6.25vw, 90px)', 
+                  fontFamily: 'var(--font-inter)' 
+                }}
+              >
+                Actuality
+              </span>
+              <span 
+                className="text-blanc font-light italic ml-4"
+                style={{ 
+                  fontSize: 'clamp(49px, 4.86vw, 70px)', 
+                  fontFamily: 'var(--font-instrument)' 
+                }}
+              >
+                ( crousti )
+              </span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Article 1 */}
-            <article className="group cursor-pointer">
-              <Link href="/blog">
-                <div className="aspect-[3/2] bg-gradient-to-br from-orange/30 to-rouge/30 rounded-2xl mb-6 overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center text-8xl group-hover:scale-110 transition-transform duration-500">
-                    📝
+          {/* Articles */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+            {latestPosts.map((post) => (
+              <article key={post.id} className="group cursor-pointer">
+                <Link href={`/blog/${post.slug}`}>
+                  <p 
+                    className="mb-3"
+                    style={{
+                      color: '#F2F2F2',
+                      fontFamily: 'var(--font-instrument)',
+                      fontSize: 'clamp(14px, 1.18vw, 17px)',
+                      fontWeight: 400,
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    ( {post.category.toUpperCase()} )
+                  </p>
+                  <h3 
+                    className="mb-6 uppercase group-hover:text-orange transition-colors"
+                    style={{
+                      color: '#F2F2F2',
+                      fontFamily: 'var(--font-inter)',
+                      fontSize: 'clamp(20px, 2.08vw, 30px)',
+                      fontWeight: 700,
+                      lineHeight: '120%',
+                      letterSpacing: '-0.02em',
+                    }}
+                  >
+                    {post.title}
+                  </h3>
+                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                </div>
-                <p className="text-orange font-light italic mb-3">( design )</p>
-                <h3 className="text-3xl font-bold group-hover:text-orange transition-colors">
-                  Guide to rebranding
-                </h3>
-              </Link>
-            </article>
-
-            {/* Article 2 */}
-            <article className="group cursor-pointer">
-              <Link href="/blog">
-                <div className="aspect-[3/2] bg-gradient-to-br from-orange/30 to-rouge/30 rounded-2xl mb-6 overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center text-8xl group-hover:scale-110 transition-transform duration-500">
-                    📝
-                  </div>
-                </div>
-                <p className="text-orange font-light italic mb-3">
-                  ( marketing )
-                </p>
-                <h3 className="text-3xl font-bold group-hover:text-orange transition-colors">
-                  Win to the salsifi
-                </h3>
-              </Link>
-            </article>
+                </Link>
+              </article>
+            ))}
           </div>
         </div>
       </section>
