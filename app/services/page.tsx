@@ -333,7 +333,7 @@ export default function ServicesPage() {
               <div className="col-span-1 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {service.image1 && (
-                    <img 
+                    <Image 
                       src={service.image1} 
                       alt={`${service.title} 1`}
                       className="w-full h-full object-cover"
@@ -346,7 +346,7 @@ export default function ServicesPage() {
               <div className="col-span-1 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {service.image2 && (
-                    <img 
+                    <Image 
                       src={service.image2} 
                       alt={`${service.title} 2`}
                       className="w-full h-full object-cover"
