@@ -158,7 +158,7 @@ export default function AboutPage() {
               >
                 <div className="relative bg-white shadow-2xl transition-transform duration-300 hover:scale-105 hover:shadow-3xl">
                   <div style={{ padding: 'clamp(12px, 1.5vw, 20px)' }}>
-                    <img
+                    <Image
                       src="/img/about/charlotte.jpg"
                       alt="Charlotte"
                       className="w-full h-auto object-cover"
@@ -193,7 +193,7 @@ export default function AboutPage() {
               >
                 <div className="relative bg-white shadow-2xl transition-transform duration-300 hover:scale-105 hover:shadow-3xl">
                   <div style={{ padding: 'clamp(12px, 1.5vw, 20px)' }}>
-                    <img
+                    <Image
                       src="/img/about/Clement.jpg"
                       alt="Clément"
                       className="w-full h-auto object-cover"
@@ -228,7 +228,7 @@ export default function AboutPage() {
               >
                 <div className="relative bg-white shadow-2xl transition-transform duration-300 hover:scale-105 hover:shadow-3xl">
                   <div style={{ padding: 'clamp(12px, 1.5vw, 20px)' }}>
-                    <img
+                    <Image
                       src="/img/about/Polaarti.jpg"
                       alt="Arti"
                       className="w-full h-auto object-cover"
