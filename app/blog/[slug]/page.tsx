@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   getPostWithContent, 
   getAllPostSlugs, 
@@ -272,7 +273,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* Image hero */}
             <div className="mb-16 overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src={post.image} 
                 alt={post.title}
                 className="w-full h-auto"
@@ -346,7 +347,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         {relatedPost.title}
                       </h3>
                       <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                        <img 
+                        <Image 
                           src={relatedPost.image} 
                           alt={relatedPost.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
