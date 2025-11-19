@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getLatestPosts } from '@/lib/blog';
 import Footer from '@/components/footer';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Artichaud Studio - Agence de Design et Marketing Digital',
