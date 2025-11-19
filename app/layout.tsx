@@ -21,7 +21,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   // 2. INDISPENSABLE : Définit la base pour les images et liens relatifs
-  metadataBase: new URL('https://artichaud.studio'),
+  metadataBase: new URL('https://artichaud-studio.com'),
 
   title: {
     default: 'Artichaud Studio - Mettez le feu à vos projets',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Artichaud Studio',
     description: 'Mettez le feu à vos projets avec notre agence de design et marketing.',
-    url: 'https://artichaud.studio',
+    url: 'https://artichaud-studio.com',
     siteName: 'Artichaud Studio',
     locale: 'fr_FR',
     type: 'website',
