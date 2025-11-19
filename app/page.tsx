@@ -1,5 +1,5 @@
 import HeatEffect from '@/components/HeatEffect';
-import Header from '@/components/header'; // ← AJOUTE CETTE LIGNE
+import Header from '@/components/header'; 
 import Link from 'next/link';
 import { getLatestPosts } from '@/lib/blog';
 import Footer from '@/components/footer';
@@ -87,7 +87,27 @@ export const metadata: Metadata = {
 export default function Home() {
   // ... tout le reste du code
     const latestPosts = getLatestPosts(2);
-  
+  // Schema.org pour l'organisation
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Artichaud Studio',
+    url: 'https://artichaud.studio',
+    logo: 'https://artichaud.studio/img/Logo.svg',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Paris',
+      addressCountry: 'FR',
+    },
+    email: 'artichaud.studio@gmail.com',
+    sameAs: [
+      'https://www.instagram.com/artichaudstudio',
+      'https://www.linkedin.com/company/artichaud-studio',
+      'https://www.tiktok.com/@artichaudstudio',
+      'https://www.pinterest.com/artichaudstudio',
+    ],
+  };
 
   const selectedWorks = [
     {
@@ -174,6 +194,11 @@ const services = [
 
   return (
     <>
+       {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       {/* HEADER / NAVIGATION */}
       <Header />
 
