@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://artichaud.studio';
+  const baseUrl = 'https://www.artichaud.studio';
   
   // Liste de vos pages statiques
   const routes = [
