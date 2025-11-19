@@ -4,17 +4,16 @@ import Footer from '@/components/footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 export const metadata: Metadata = {
-  title: 'Nos Réalisations - Artichaud Studio | Portfolio et Projets',
-  description: 'Explorez nos projets : Charit.io, Multiface, Disobey, Com\'on et plus encore. Découvrez notre expertise en branding et design digital.',
-  keywords: ['portfolio', 'réalisations', 'projets design', 'case studies', 'branding exemples'],
+  title: 'Nos Réalisations - Artichaud Studio | Portfolio Design & Branding',
+  description: 'Découvrez nos projets : Charit.io, Multiface, Disobey et plus. Portfolio de nos réalisations en branding, webdesign et marketing digital.',
+  keywords: ['portfolio design', 'réalisations agence', 'projets branding', 'case studies'],
   openGraph: {
     title: 'Nos Réalisations - Artichaud Studio',
-    description: 'Explorez nos projets et découvrez notre expertise en branding et design digital.',
+    description: 'Découvrez nos projets et case studies en design et branding',
     url: 'https://artichaud.studio/works',
-    siteName: 'Artichaud Studio',
-    locale: 'fr_FR',
-    type: 'website',
+    images: ['/opengraph-works.jpg'], // Image spécifique si tu veux
   },
 };
 
