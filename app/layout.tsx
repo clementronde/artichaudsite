@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, Instrument_Serif } from 'next/font/google';
+import GoogleTagManager, { GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,9 +30,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth">
+      <head>
+        <GoogleTagManager />
+      </head>
       <body
         className={`${inter.variable} ${instrumentSerif.variable} font-inter bg-noir text-blanc antialiased`}
       >
+        <GoogleTagManagerNoScript />
         {children}
       </body>
     </html>
