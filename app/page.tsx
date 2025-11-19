@@ -123,7 +123,7 @@ const services = [
       <section className="relative h-screen overflow-hidden bg-black flex items-center justify-center">
         {/* 1️⃣ Logo géant — fond total en largeur */}
         <div className="absolute inset-x-0 bottom-[10vh] z-0 flex justify-center">
-          <img
+          <Image
             src="/img/Logo.svg"
             alt="Artichaud logo"
             className="w-screen h-auto object-contain opacity-60"
@@ -237,7 +237,7 @@ const services = [
       <div className="col-span-1"></div>
       <div className="col-span-1"></div>
       <div className="col-span-1 px-0">
-        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+        <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
       </div>
       <div className="col-span-1 pl-6 pr-6 flex flex-col">
         <div className="flex items-start justify-between mb-auto">
@@ -267,7 +267,7 @@ const services = [
   {layout === 'multiface' && (
     <div className="relative grid grid-cols-4 gap-0">
       <div className="col-span-2 px-0">
-        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+        <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
       </div>
       <div className="col-span-1 pl-6 pr-6 flex flex-col">
         <div className="flex items-start justify-between mb-auto">
@@ -299,7 +299,7 @@ const services = [
     <div className="relative grid grid-cols-4 gap-0">
       <div className="col-span-1"></div>
       <div className="col-span-1 px-0">
-        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+        <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
       </div>
       <div className="col-span-1 pl-6 pr-6 flex flex-col">
         <div className="flex items-start justify-between mb-auto">
@@ -330,7 +330,7 @@ const services = [
   {layout === 'comon' && (
     <div className="relative grid grid-cols-4 gap-0">
       <div className="col-span-1 px-0">
-        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+        <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
       </div>
       <div className="col-span-1 pl-6 pr-6 flex flex-col">
         <div className="flex items-start justify-between mb-auto">
@@ -362,7 +362,7 @@ const services = [
     <div className="relative grid grid-cols-4 gap-0">
       <div className="col-span-1"></div>
       <div className="col-span-2 px-0">
-        <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+        <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
       </div>
       <div className="col-span-1 pl-6 pr-6 flex flex-col">
         <div className="flex items-start justify-between mb-auto">
@@ -422,7 +422,7 @@ const services = [
 
   {/* Image pleine largeur */}
   <div className="w-full">
-    <img src={work.image} alt={work.title} className="w-full h-auto object-cover" />
+    <Image src={work.image} alt={work.title} className="w-full h-auto object-cover" />
   </div>
   
   {/* Deliverables en dessous */}
@@ -568,7 +568,7 @@ const services = [
               <div className="col-span-1 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {service.image1 && (
-                    <img 
+                    <Image 
                       src={service.image1} 
                       alt={`${service.title} 1`}
                       className="w-full h-full object-cover"
@@ -581,7 +581,7 @@ const services = [
               <div className="col-span-1 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {service.image2 && (
-                    <img 
+                    <Image 
                       src={service.image2} 
                       alt={`${service.title} 2`}
                       className="w-full h-full object-cover"
@@ -780,7 +780,7 @@ const services = [
         }}
       >
         <div className="relative inline-block">
-          <img
+          <Image
             src="/img/about/charlotte.png"
             alt="Charlotte"
             className="w-[clamp(180px, 20vw, 250px)] h-auto shadow-2xl"
@@ -825,7 +825,7 @@ const services = [
         }}
       >
         <div className="relative inline-block">
-          <img
+          <Image
             src="/img/about/Clement.png"
             alt="Clément"
             className="w-[clamp(180px, 20vw, 280px)] h-auto shadow-2xl"
@@ -870,7 +870,7 @@ const services = [
         }}
       >
         <div className="relative inline-block">
-          <img
+          <Image
             src="/img/about/Polaarti.png"
             alt="Arti"
             className="w-[clamp(180px, 20vw, 220px)] h-auto shadow-2xl"
@@ -982,7 +982,7 @@ const services = [
                     {post.title}
                   </h3>
                   <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                    <img 
+                    <Image 
                       src={post.image} 
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
