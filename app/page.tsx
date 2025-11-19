@@ -6,23 +6,80 @@ import Footer from '@/components/footer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
+
 export const metadata: Metadata = {
-  title: 'Artichaud Studio - Agence de Design et Marketing Digital',
-  description: 'Artichaud Studio : Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise.',
-  keywords: ['agence design', 'branding', 'webdesign', 'marketing digital', 'stratégie digitale', 'Paris'],
-  authors: [{ name: 'Artichaud Studio' }],
+  title: 'Artichaud Studio | Agence de Design & Marketing Digital à Paris',
+  
+  description: 'Artichaud Studio : Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise en identité visuelle, UX/UI design et marketing digital.',
+  
+  keywords: [
+    'agence design Paris',
+    'branding',
+    'webdesign',
+    'marketing digital',
+    'stratégie digitale',
+    'identité visuelle',
+    'UX UI design',
+    'brand strategy',
+    'shooting produit',
+    'agence créative',
+  ],
+  
+  // Auteur et créateur
+  authors: [{ name: 'Artichaud Studio', url: 'https://artichaud.studio' }],
+  creator: 'Artichaud Studio',
+  publisher: 'Artichaud Studio',
+  
+  // URL de base (important pour les chemins relatifs)
+  metadataBase: new URL('https://artichaud.studio'),
+  
+  // URL canonique (évite le duplicate content)
+  alternates: {
+    canonical: 'https://artichaud.studio',
+  },
+  
+  // Open Graph (Facebook, LinkedIn, WhatsApp, etc.)
   openGraph: {
-    title: 'Artichaud Studio - Agence de Design et Marketing Digital',
-    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale.',
+    type: 'website',
+    locale: 'fr_FR',
     url: 'https://artichaud.studio',
     siteName: 'Artichaud Studio',
-    locale: 'fr_FR',
-    type: 'website',
+    title: 'Artichaud Studio | Agence de Design & Marketing Digital',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise.',
+    images: [
+      {
+        url: '/opengraph-image.jpg', 
+        width: 1200,
+        height: 630,
+        alt: 'Artichaud Studio - Mettez le feu à vos projets',
+      },
+    ],
   },
+  
+  // Twitter Cards
   twitter: {
     card: 'summary_large_image',
-    title: 'Artichaud Studio',
-    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale.',
+    site: '@artichaudstudio',
+    creator: '@artichaudstudio',
+    title: 'Artichaud Studio | Agence de Design & Marketing Digital',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets.',
+    images: ['/opengraph-image.jpg'],
+  },
+  
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  verification: {
+    // google: 'ton-code-ici', // Décommente quand tu auras le code
   },
 };
 
