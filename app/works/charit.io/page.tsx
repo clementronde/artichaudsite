@@ -170,15 +170,15 @@ export default function CharitIOProject() {
           {/* Images du projet - Responsive grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
             <div className="aspect-[4/3] bg-blanc/5 rounded-lg overflow-hidden">
-              <img
-                src="/img/projects/charitio/hero-1.jpg"
+              <Image
+                src="/Image/projects/charitio/hero-1.jpg"
                 alt="Charit.io interface"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="aspect-[4/3] bg-blanc/5 rounded-lg overflow-hidden">
-              <img
-                src="/img/projects/charitio/hero-2.jpg"
+              <Image
+                src="/Image/projects/charitio/hero-2.jpg"
                 alt="Charit.io branding"
                 className="w-full h-full object-cover"
               />
@@ -256,8 +256,8 @@ export default function CharitIOProject() {
           {/* Images direction artistique */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
             <div className="aspect-[4/3] bg-blanc/5 rounded-lg overflow-hidden">
-              <img
-                src="/img/projects/charitio/direction-1.jpg"
+              <Image
+                src="/Image/projects/charitio/direction-1.jpg"
                 alt="Direction artistique Charit.io"
                 className="w-full h-full object-cover"
               />
@@ -335,23 +335,23 @@ export default function CharitIOProject() {
           {/* Images refonte */}
           <div className="mt-12 space-y-4">
             <div className="aspect-[16/9] bg-blanc/5 rounded-lg overflow-hidden">
-              <img
-                src="/img/projects/charitio/website-1.jpg"
+              <Image
+                src="/Image/projects/charitio/website-1.jpg"
                 alt="Refonte site Charit.io"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="aspect-[4/3] bg-blanc/5 rounded-lg overflow-hidden">
-                <img
-                  src="/img/projects/charitio/website-2.jpg"
+                <Image
+                  src="/Image/projects/charitio/website-2.jpg"
                   alt="Interface Charit.io"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[4/3] bg-blanc/5 rounded-lg overflow-hidden">
-                <img
-                  src="/img/projects/charitio/website-3.jpg"
+                <Image
+                  src="/Image/projects/charitio/website-3.jpg"
                   alt="Mobile Charit.io"
                   className="w-full h-full object-cover"
                 />
