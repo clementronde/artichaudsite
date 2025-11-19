@@ -79,8 +79,8 @@ export default function WorksPage() {
                       </h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <img 
-                        src="/img/selectedworks/charitio.jpg" 
+                      <Image 
+                        src="/Image/selectedworks/charitio.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
@@ -122,8 +122,8 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1"></div>
                   <div className="col-span-1">
-                    <img 
-                      src="/img/selectedworks/disobey.jpg" 
+                    <Image 
+                      src="/Image/selectedworks/disobey.jpg" 
                       alt="Disobey"
                       className="w-full h-auto object-cover"
                     />
@@ -180,8 +180,8 @@ export default function WorksPage() {
               <Link href="/selectedworks/multiface" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-2">
-                    <img 
-                      src="/img/selectedworks/multiface.jpg" 
+                    <Image 
+                      src="/Image/selectedworks/multiface.jpg" 
                       alt="Multiface"
                       className="w-full h-auto object-cover"
                     />
@@ -212,8 +212,8 @@ export default function WorksPage() {
               <Link href="/selectedworks/keleti" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
-                    <img 
-                      src="/img/selectedworks/keleti.jpg" 
+                    <Image 
+                      src="/Image/selectedworks/keleti.jpg" 
                       alt="Keleti Tautu"
                       className="w-full h-auto object-cover"
                     />
@@ -244,8 +244,8 @@ export default function WorksPage() {
               <Link href="/selectedworks/cherico" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
-                    <img 
-                      src="/img/selectedworks/cherico.jpg" 
+                    <Image 
+                      src="/Image/selectedworks/cherico.jpg" 
                       alt="Cherico"
                       className="w-full h-auto object-cover"
                     />
@@ -277,8 +277,8 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1"></div>
                   <div className="col-span-2">
-                    <img 
-                      src="/img/selectedworks/comon.jpg" 
+                    <Image 
+                      src="/Image/selectedworks/comon.jpg" 
                       alt="Com'on"
                       className="w-full h-auto object-cover"
                     />
@@ -313,8 +313,8 @@ export default function WorksPage() {
                       <h3 className="text-blanc font-bold uppercase" style={{ fontSize: 'clamp(14px, 1.39vw, 20px)', fontFamily: 'var(--font-inter)' }}>UTOPIA</h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <img 
-                        src="/img/selectedworks/utopia.jpg" 
+                      <Image 
+                        src="/Image/selectedworks/utopia.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
@@ -331,8 +331,8 @@ export default function WorksPage() {
                       <h3 className="text-blanc font-bold uppercase" style={{ fontSize: 'clamp(14px, 1.39vw, 20px)', fontFamily: 'var(--font-inter)' }}>OLEHENRIKSEN</h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <img 
-                        src="/img/selectedworks/olehenriksen.jpg" 
+                      <Image 
+                        src="/Image/selectedworks/olehenriksen.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
