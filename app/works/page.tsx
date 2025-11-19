@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Nos Réalisations - Artichaud Studio | Portfolio et Projets',
