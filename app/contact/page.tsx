@@ -62,7 +62,7 @@ export default function ContactPage() {
                       <div className="bg-white p-3 pb-10">
                         <div className="w-full aspect-[1/1] bg-gradient-to-br from-[#FF3B00] to-[#FF8A00] grid place-items-center">
                           {/* logo centra l (remplace l’emoji par ton SVG si tu veux) */}
-                          <img
+                          <Image
                             src="/img/logonavbar.png"
                             alt=""
                             className="w-[38%] h-auto opacity-95"
