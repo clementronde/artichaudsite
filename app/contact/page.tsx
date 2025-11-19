@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Contact - Artichaud Studio | Parlons de votre projet',
