@@ -3,9 +3,9 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService", // Peut aussi être "Organization"
     "name": "Artichaud",
-    "url": "https://artichaud.studio",
-    "logo": "https://artichaud.studio/icon.png", 
-    "image": "https://artichaud.studio/opengraph-image.jpg",
+    "url": "https://artichaud-studio.com",
+    "logo": "https://artichaud-studio.com/icon.png", 
+    "image": "https://artichaud-studio.com/opengraph-image.jpg",
     "description": "Agence web créative spécialisée en développement TSX et design.",
     "address": {
       "@type": "PostalAddress",
