@@ -80,7 +80,7 @@ export default function WorksPage() {
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
                       <Image 
-                        src="/Image/selectedworks/charitio.jpg" 
+                        src="/img/selectedworks/charitio.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
@@ -123,7 +123,7 @@ export default function WorksPage() {
                   <div className="col-span-1"></div>
                   <div className="col-span-1">
                     <Image 
-                      src="/Image/selectedworks/disobey.jpg" 
+                      src="/img/selectedworks/disobey.jpg" 
                       alt="Disobey"
                       className="w-full h-auto object-cover"
                     />
@@ -181,7 +181,7 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-2">
                     <Image 
-                      src="/Image/selectedworks/multiface.jpg" 
+                      src="/img/selectedworks/multiface.jpg" 
                       alt="Multiface"
                       className="w-full h-auto object-cover"
                     />
@@ -213,7 +213,7 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
                     <Image 
-                      src="/Image/selectedworks/keleti.jpg" 
+                      src="/img/selectedworks/keleti.jpg" 
                       alt="Keleti Tautu"
                       className="w-full h-auto object-cover"
                     />
@@ -245,7 +245,7 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
                     <Image 
-                      src="/Image/selectedworks/cherico.jpg" 
+                      src="/img/selectedworks/cherico.jpg" 
                       alt="Cherico"
                       className="w-full h-auto object-cover"
                     />
@@ -278,7 +278,7 @@ export default function WorksPage() {
                   <div className="col-span-1"></div>
                   <div className="col-span-2">
                     <Image 
-                      src="/Image/selectedworks/comon.jpg" 
+                      src="/img/selectedworks/comon.jpg" 
                       alt="Com'on"
                       className="w-full h-auto object-cover"
                     />
@@ -314,7 +314,7 @@ export default function WorksPage() {
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
                       <Image 
-                        src="/Image/selectedworks/utopia.jpg" 
+                        src="/img/selectedworks/utopia.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
@@ -332,7 +332,7 @@ export default function WorksPage() {
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
                       <Image 
-                        src="/Image/selectedworks/olehenriksen.jpg" 
+                        src="/img/selectedworks/olehenriksen.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
                       />
