@@ -4,16 +4,17 @@ import Footer from '@/components/footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
 export const metadata: Metadata = {
-  title: 'Nos Réalisations - Artichaud Studio | Portfolio Design & Branding',
-  description: 'Découvrez nos projets : Charit.io, Multiface, Disobey et plus. Portfolio de nos réalisations en branding, webdesign et marketing digital.',
-  keywords: ['portfolio design', 'réalisations agence', 'projets branding', 'case studies'],
+  title: 'Nos Réalisations - Artichaud Studio | Portfolio et Projets',
+  description: 'Explorez nos projets : Charit.io, Multiface, Disobey, Com\'on et plus encore. Découvrez notre expertise en branding et design digital.',
+  keywords: ['portfolio', 'réalisations', 'projets design', 'case studies', 'branding exemples'],
   openGraph: {
     title: 'Nos Réalisations - Artichaud Studio',
-    description: 'Découvrez nos projets et case studies en design et branding',
+    description: 'Explorez nos projets et découvrez notre expertise en branding et design digital.',
     url: 'https://artichaud.studio/works',
-    images: ['/opengraph-works.jpg'], // Image spécifique si tu veux
+    siteName: 'Artichaud Studio',
+    locale: 'fr_FR',
+    type: 'website',
   },
 };
 
@@ -65,7 +66,7 @@ export default function WorksPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-0">
               {/* CHARIT.IO - 50% gauche (0-50%) */}
               <article className="relative group cursor-pointer">
-                <Link href="/selectedworks/charitio" className="block">
+                <Link href="/works/charit.io" className="block">
                   <div className="relative">
                     <div className="pb-4">
                       <h3 
@@ -79,7 +80,7 @@ export default function WorksPage() {
                       </h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <Image 
+                      <img 
                         src="/img/selectedworks/charitio.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
@@ -122,7 +123,7 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1"></div>
                   <div className="col-span-1">
-                    <Image 
+                    <img 
                       src="/img/selectedworks/disobey.jpg" 
                       alt="Disobey"
                       className="w-full h-auto object-cover"
@@ -180,7 +181,7 @@ export default function WorksPage() {
               <Link href="/selectedworks/multiface" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-2">
-                    <Image 
+                    <img 
                       src="/img/selectedworks/multiface.jpg" 
                       alt="Multiface"
                       className="w-full h-auto object-cover"
@@ -212,7 +213,7 @@ export default function WorksPage() {
               <Link href="/selectedworks/keleti" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
-                    <Image 
+                    <img 
                       src="/img/selectedworks/keleti.jpg" 
                       alt="Keleti Tautu"
                       className="w-full h-auto object-cover"
@@ -244,7 +245,7 @@ export default function WorksPage() {
               <Link href="/selectedworks/cherico" className="block">
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1">
-                    <Image 
+                    <img 
                       src="/img/selectedworks/cherico.jpg" 
                       alt="Cherico"
                       className="w-full h-auto object-cover"
@@ -277,7 +278,7 @@ export default function WorksPage() {
                 <div className="grid grid-cols-4 gap-0">
                   <div className="col-span-1"></div>
                   <div className="col-span-2">
-                    <Image 
+                    <img 
                       src="/img/selectedworks/comon.jpg" 
                       alt="Com'on"
                       className="w-full h-auto object-cover"
@@ -313,7 +314,7 @@ export default function WorksPage() {
                       <h3 className="text-blanc font-bold uppercase" style={{ fontSize: 'clamp(14px, 1.39vw, 20px)', fontFamily: 'var(--font-inter)' }}>UTOPIA</h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <Image 
+                      <img 
                         src="/img/selectedworks/utopia.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
@@ -331,7 +332,7 @@ export default function WorksPage() {
                       <h3 className="text-blanc font-bold uppercase" style={{ fontSize: 'clamp(14px, 1.39vw, 20px)', fontFamily: 'var(--font-inter)' }}>OLEHENRIKSEN</h3>
                     </div>
                     <div className="relative overflow-hidden bg-blanc/5 aspect-[4/3]">
-                      <Image 
+                      <img 
                         src="/img/selectedworks/olehenriksen.jpg" 
                         alt="Charit.io"
                         className="w-full h-full object-cover"
