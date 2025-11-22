@@ -37,6 +37,7 @@
   }
 }
 
+
 @layer components {
   .container-custom {
     @apply max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)];
@@ -92,4 +93,31 @@
 /* Transition fluide */
 * {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Animation Flottement Organique --- */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px); /* Monte de 15px */
+  }
+}
+
+/* Variation 1 : Lente (6 secondes) */
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Variation 2 : Moyenne avec délai (5 secondes) */
+.animate-float-medium {
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 1s; /* Commence après 1s */
+}
+
+/* Variation 3 : Plus lente et décalée (7 secondes) */
+.animate-float-delayed {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 2s;
 }

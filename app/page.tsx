@@ -5,6 +5,7 @@ import { getLatestPosts } from '@/lib/blog';
 import Footer from '@/components/footer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import AboutSection from '@/components/AboutSection';
 
 
 export const metadata: Metadata = {
@@ -213,7 +214,7 @@ const services = [
       width={1200} 
       height={400}
       // Opacité à 100% car c'est la chaleur qui le cache par défaut
-      className="w-[90vw] max-w-[1400px] h-auto object-contain opacity-100" 
+      className="w-[90vw] max-w-[1600px] h-auto object-contain opacity-100" 
     />
   </div>
 
@@ -269,7 +270,7 @@ const services = [
   
   {/* Traits verticaux - Cachés sur mobile */}
   <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
-    <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+    <div className="relative h-full max-w-[1600px] mx-auto px-[clamp(1rem,3vw,3rem)]">
       <div 
         className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
         style={{ left: '26.5%' }}
@@ -592,7 +593,7 @@ const services = [
 {/* SERVICES */}
 <section className="relative section-padding bg-noir overflow-hidden">
 <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
-    <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+    <div className="relative h-full max-w-[1600px] mx-auto px-[clamp(1rem,3vw,3rem)]">
       <div 
         className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
         style={{ left: '26.5%' }}
@@ -635,7 +636,7 @@ const services = [
           key={service.number}
           className="group relative cursor-pointer transition-all duration-500 border-t border-blanc/20 hover:border-transparent"
           style={{
-            borderBottom: index === services.length - 1 ? '1px solid rgba(233, 70, 1, 0.2)' : 'none'
+            borderBottom: index === services.length - 1 ? '0px solid rgba(233, 70, 1, 0.2)' : 'none'
           }}
         >
           {/* Fond hover avec dégradé */}
@@ -779,295 +780,9 @@ const services = [
       ))}
     </div>
   </div>
-</section>{/* ABOUT ARTICHAUD */}
-<section className="relative bg-noir" id="about">
-  {/* Ellipses rouges et orange en fond */}
-<div className="absolute inset-0 pointer-events-none overflow-hidden">
-  {/* Ellipses rouges en haut */}
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#F00',
-      filter: 'blur(200px)',
-      left: '20%',
-      top: '10%',
-    }}
-  />
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#F00',
-      filter: 'blur(200px)',
-      right: '15%',
-      top: '15%',
-    }}
-  />
-  
-  {/* Ellipses rouges à gauche en bas */}
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#F00',
-      filter: 'blur(200px)',
-      left: '5%',
-      bottom: '10%',
-    }}
-  />
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#F00',
-      filter: 'blur(200px)',
-      left: '15%',
-      bottom: '5%',
-    }}
-  />
-  
-  {/* Ellipses orange à droite en bas */}
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#FF6F00',
-      filter: 'blur(200px)',
-      right: '10%',
-      bottom: '15%',
-    }}
-  />
-  <div
-    className="absolute"
-    style={{
-      width: '611px',
-      height: '611px',
-      borderRadius: '611.144px',
-      background: '#FF9D00',
-      filter: 'blur(200px)',
-      right: '5%',
-      bottom: '5%',
-    }}
-  />
-</div>
-
-  {/* 🧱 TITRE STICKY — effet liquid glass (iPhone-like) avec gradient */}
-  <div
-    className="sticky z-40 w-full top-[80px] flex items-center justify-center
-               overflow-hidden"
-  >
-    {/* Layer avec liquid glass fort en haut */}
-    <div
-      className="absolute inset-0"
-      style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%)',
-        backdropFilter: 'blur(14px) saturate(150%)',
-        WebkitBackdropFilter: 'blur(14px) saturate(150%)',
-      }}
-    />
-    
-    {/* Layer avec liquid glass faible en bas */}
-    <div
-      className="absolute inset-0"
-      style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%)',
-        backdropFilter: 'blur(4px) saturate(110%)',
-        WebkitBackdropFilter: 'blur(4px) saturate(110%)',
-      }}
-    />
-
-    <h2
-      className="relative w-full text-center font-bold uppercase
-                 py-6 px-4
-                 leading-[0.9]"
-      style={{
-        fontSize: 'clamp(32px, 9.03vw, 130px)',
-        fontFamily: 'var(--font-inter)',
-        color: '#F2F2F2',
-        letterSpacing: '-0.02em',
-        wordBreak: 'keep-all',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      About artichaud
-    </h2>
-  </div>
-
-  {/* 🧭 CONTENU DÉFILANT */}
-  <div className="relative z-10 overflow-hidden">
-    {/* Polaroids positionnés en cascade */}
-    <div className="relative min-h-[800px] lg:min-h-[1400px] px-[clamp(1rem,3vw,3rem)] mb-20">
-
-      {/* Charlotte */}
-      <div
-        className="absolute z-30"
-        style={{
-          left: 'clamp(5%, 25%, 25%)',
-          top: 'clamp(40px, 5vw, 80px)',
-        }}
-      >
-        <div className="relative inline-block">
-          <Image
-                    src="/img/about/Charlotte.png"
-                    alt="Charlotte"
-                    width={500}
-                    height={650}
-                    className="w-[clamp(180px,20vw,250px)] h-auto shadow-2xl"
-                    style={{ transform: 'rotate(3deg)' }}
-                  />
-          {/* Prénom mobile - sous la photo */}
-          <p
-            className="absolute lg:hidden italic text-center w-full"
-            style={{
-              fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 3.5vw, 18px)',
-              color: '#F2F2F2',
-              bottom: 'clamp(12px, 3vw, 20px)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ( Charlotte )
-          </p>
-          {/* Prénom desktop - à droite */}
-          <p
-            className="hidden lg:block absolute italic"
-            style={{
-              fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(18px, 1.8vw, 26px)',
-              color: '#F2F2F2',
-              left: '110%',
-              top: '0%',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ( Charlotte )
-          </p>
-        </div>
-      </div>
-
-      {/* Clément */}
-      <div
-        className="absolute z-20"
-        style={{
-          left: 'clamp(10%, 50%, 52%)',
-          top: 'clamp(250px, 35vw, 400px)',
-        }}
-      >
-        <div className="relative inline-block">
-         <Image
-                    src="/img/about/Clement.png"
-                    alt="Clément"
-                    width={500}
-                    height={650}
-                    className="w-[clamp(180px,20vw,250px)] h-auto shadow-2xl"
-                    style={{ transform: 'rotate(8deg)' }}
-                  />
-          {/* Prénom mobile - sous la photo */}
-          <p
-            className="absolute lg:hidden italic text-center w-full"
-            style={{
-              fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 3.5vw, 18px)',
-              color: '#F2F2F2',
-              bottom: 'clamp(12px, 3vw, 20px)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ( Clément )
-          </p>
-          {/* Prénom desktop - à droite */}
-          <p
-            className="hidden lg:block absolute italic"
-            style={{
-              fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(18px, 1.8vw, 26px)',
-              color: '#F2F2F2',
-              left: '110%',
-              top: '5%',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ( Clément )
-          </p>
-        </div>
-      </div>
-
-      {/* Arti */}
-      <div
-        className="absolute z-10"
-        style={{
-          left: 'clamp(5%, 18%, 18%)',
-          top: 'clamp(480px, 65vw, 750px)',
-        }}
-      >
-        <div className="relative inline-block">
-          <Image
-                    src="/img/about/Polaarti.png"
-                    alt="Arti"
-                    width={500}
-                    height={650}
-                    className="w-[clamp(180px,20vw,250px)] h-auto shadow-2xl"
-                    style={{ transform: 'rotate(-12deg)' }}
-                  />
-          {/* Prénom mobile - sous la photo */}
-          <p
-            className="absolute lg:hidden italic text-center w-full"
-            style={{
-              fontFamily: 'var(--font-instrument)',
-              fontSize: 'clamp(14px, 3.5vw, 18px)',
-              color: '#F2F2F2',
-              bottom: 'clamp(12px, 3vw, 20px)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            ( Arti )
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Bloc Mission */}
-    <div className="relative z-10 pb-32 px-[clamp(1rem,3vw,3rem)]">
-      <h4
-        className="mb-6 pl-36 pr-36"
-        style={{
-          color: '#F2F2F2',
-          fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(22px, 1.25vw, 18px)',
-          fontWeight: 700,
-          lineHeight: '140%',
-          textTransform: 'uppercase',
-        }}
-      >
-        NOTRE MISSION
-      </h4>
-      <p
-        className="pl-36 pr-36"
-        style={{
-          color: '#F2F2F2',
-          fontFamily: 'var(--font-inter)',
-          fontSize: 'clamp(45px, 1.53vw, 22px)',
-          fontWeight: 300,
-          lineHeight: '140%',
-        }}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-      </p>
-    </div>
-  </div>
 </section>
+{/* ABOUT ARTICHAUD */}
+<AboutSection />
       {/* ACTUALITY (BLOG) */}
       <section className="relative section-padding bg-noir overflow-hidden">
         <div className="container-custom">
