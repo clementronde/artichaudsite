@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,157 +30,98 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  // Fonction pour savoir si on est sur la page
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
 
-  // Fermer le menu quand on clique sur un lien
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  // Variants pour l'animation cascade du menu
+  const menuContainerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+    exit: { opacity: 0, transition: { duration: 0.3 } }
+  };
+
+  const linkItemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    show: { 
+      y: 0, 
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 20 }
+    },
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-noir backdrop-blur-lg py-6' : 'bg-transparent py-6'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled ? 'bg-[#191919] backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent py-6'
         }`}
       >
         <div className="container-custom">
           <div className="flex justify-between items-center">
-            {/* BURGER MENU MOBILE - À GAUCHE */}
+            
+            {/* 1️⃣ BURGER MENU (VISIBLE SEULEMENT SI MENU FERMÉ) */}
             <button
-              className="lg:hidden text-blanc z-50 relative order-1"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Menu"
+              className={`lg:hidden text-blanc z-50 relative order-1 w-10 h-10 flex flex-col justify-center items-center gap-1.5 transition-opacity duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Ouvrir le menu"
             >
-              {isMenuOpen ? (
-                // Icône X
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M18 6L6 18M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              ) : (
-                // Icône Burger (3 lignes)
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M3 7H21M3 12H21M3 17H21"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              )}
+              <span className="w-8 h-0.5 bg-white block" />
+              <span className="w-8 h-0.5 bg-white block" />
+              <span className="w-8 h-0.5 bg-white block" />
             </button>
 
-            {/* LOGO - CENTRÉ SUR DESKTOP, À DROITE SUR MOBILE */}
+            {/* LOGO */}
             <Link href="/" className="group relative z-50 lg:order-1 order-2">
               <img
                 src="/img/logonavbar.png"
                 alt="Artichaud Studio"
-                className="h-14 w-auto transition-transform duration-300 group-hover:scale-110"
+                className="h-10 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
               />
-              {/* Point blanc sous le logo si on est sur la home */}
               {isActive('/') && pathname === '/' && !isMenuOpen && (
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
+                <motion.div 
+                  layoutId="activeDot"
+                  className="absolute -bottom-4 left-1/2 -translate-x-1/2"
+                >
                   <div className="w-1.5 h-1.5 bg-blanc rounded-full"></div>
-                </div>
+                </motion.div>
               )}
             </Link>
 
-            {/* NAVIGATION DESKTOP avec points indicateurs */}
+            {/* NAVIGATION DESKTOP */}
             <nav className="hidden lg:flex items-center gap-10 order-2">
-              {/* WORKS */}
-              <Link
-                href="/works"
-                className={`relative text-[15px] transition-colors duration-300 ${
-                  isActive('/works')
-                    ? 'text-orange'
-                    : 'text-blanc hover:text-orange'
-                }`}
-              >
-                Works
-                {isActive('/works') && (
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="w-1.5 h-1.5 bg-blanc rounded-full animate-pulse"></div>
-                  </div>
-                )}
-              </Link>
-
-              {/* SERVICES */}
-              <Link
-                href="/services"
-                className={`relative text-[15px] transition-colors duration-300 ${
-                  isActive('/services')
-                    ? 'text-orange'
-                    : 'text-blanc hover:text-orange'
-                }`}
-              >
-                Services
-                {isActive('/services') && (
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="w-1.5 h-1.5 bg-blanc rounded-full animate-pulse"></div>
-                  </div>
-                )}
-              </Link>
-
-              {/* ABOUT */}
-              <Link
-                href="/about"
-                className={`relative text-[15px] transition-colors duration-300 ${
-                  isActive('/about')
-                    ? 'text-orange'
-                    : 'text-blanc hover:text-orange'
-                }`}
-              >
-                About
-                {isActive('/about') && (
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="w-1.5 h-1.5 bg-blanc rounded-full animate-pulse"></div>
-                  </div>
-                )}
-              </Link>
-
-              {/* BLOG */}
-              <Link
-                href="/blog"
-                className={`relative text-[15px] transition-colors duration-300 ${
-                  isActive('/blog')
-                    ? 'text-orange'
-                    : 'text-blanc hover:text-orange'
-                }`}
-              >
-                Blog
-                {isActive('/blog') && (
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="w-1.5 h-1.5 bg-blanc rounded-full animate-pulse"></div>
-                  </div>
-                )}
-              </Link>
-
-              {/* CONTACT */}
-              <Link
-                href="/contact"
-                className={`relative text-[15px] transition-colors duration-300 ${
-                  isActive('/contact')
-                    ? 'text-orange'
-                    : 'text-blanc hover:text-orange'
-                }`}
-              >
-                Contact
-                {isActive('/contact') && (
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="w-1.5 h-1.5 bg-blanc rounded-full animate-pulse"></div>
-                  </div>
-                )}
-              </Link>
+              {['Works', 'Services', 'About', 'Blog'].map((item) => {
+                const path = `/${item.toLowerCase()}`;
+                const active = isActive(path);
+                return (
+                  <Link
+                    key={item}
+                    href={path}
+                    className={`relative text-[15px] py-1 group ${active ? 'text-orange' : 'text-blanc hover:text-orange/80 transition-colors'}`}
+                  >
+                    {item}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-orange transition-all duration-300 group-hover:w-full opacity-50"></span>
+                    {active && (
+                      <motion.div 
+                        layoutId="nav-dot"
+                        className="absolute -bottom-4 left-1/2 w-1.5 h-1.5 bg-blanc rounded-full"
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* BOUTON "LET'S TALK" DESKTOP */}
@@ -189,137 +130,99 @@ export default function Header() {
               className="hidden lg:flex items-center gap-2 text-blanc hover:text-orange transition-colors duration-300 text-[15px] group order-3"
             >
               <span>Let's talk</span>
-              <svg
+              <motion.svg
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                className="transition-transform duration-300 group-hover:translate-x-1"
+                whileHover={{ x: 3, y: -3 }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
-                <path
-                  d="M1 15L15 1M15 1H8M15 1V8"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <path d="M1 15L15 1M15 1H8M15 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </motion.svg>
             </Link>
-
-            {/* BOUTON "LET'S TALK" MOBILE - À DROITE EN HAUT DANS LE MENU */}
           </div>
         </div>
       </header>
 
-      {/* MENU MOBILE FULLSCREEN */}
-      <div
-        className={`lg:hidden fixed inset-0 z-[100] transition-all duration-500 ${
-          isMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        {/* Fond avec dégradé noir vers rouge-orange - opacité 100% pour cacher la page */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, #000000 0%, #1a0000 40%, #FF0000 70%, #FF6F00 90%, #FF9D00 100%)',
-          }}
-        />
-
-        {/* Header du menu avec burger et let's talk */}
-        <div className="relative z-[110] px-6 py-6 flex justify-between items-center">
-          {/* Burger (X) à gauche */}
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="text-blanc"
-            aria-label="Fermer le menu"
+      {/* 3️⃣ MENU MOBILE FULLSCREEN */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed inset-0 z-[100] bg-black"
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M18 6L6 18M6 6L18 18"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+            {/* Fond dégradé */}
+            <div
+              className="absolute inset-0 z-0"
+              style={{
+                background: 'linear-gradient(180deg, #000000 0%, #1a0000 40%, #FF0000 80%, #FF9D00 100%)',
+                opacity: 0.95
+              }}
+            />
 
-          {/* Let's talk à droite */}
-          <Link
-            href="/contact"
-            onClick={handleLinkClick}
-            className="flex items-center gap-2 text-blanc hover:text-orange transition-colors"
-          >
-            <span className="text-sm font-medium">Let's talk</span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <path
-                d="M1 15L15 1M15 1H8M15 1V8"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
-        </div>
+            {/* HEADER DU MENU MOBILE (Croix + CTA) */}
+            <div className="relative z-[110] px-6 py-6 flex justify-between items-center container-custom">
+              
+              {/* ❌ CROIX DE FERMETURE */}
+              <button 
+                onClick={() => setIsMenuOpen(false)}
+                className="w-10 h-10 flex items-center justify-center text-white hover:text-orange transition-colors"
+                aria-label="Fermer"
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              
+              {/* 💬 LET'S TALK MIS EN AVANT (BOUTON BLANC) */}
+              <Link
+                href="/contact"
+                onClick={handleLinkClick}
+                className="
+                  bg-white text-black 
+                  px-5 py-2.5 rounded-full 
+                  flex items-center gap-2 
+                  font-bold uppercase text-xs tracking-wide
+                  shadow-lg shadow-orange/20
+                  active:scale-95 transition-all duration-200
+                "
+              >
+                <span>Let's talk</span>
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M1 15L15 1M15 1H8M15 1V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
 
-        {/* Contenu du menu */}
-        <div className="relative h-full flex flex-col pt-8">
-          {/* Navigation centrée */}
-          <nav className="flex-1 flex flex-col items-center justify-center gap-8 px-8">
-            <Link
-              href="/works"
-              onClick={handleLinkClick}
-              className="text-blanc text-4xl font-light hover:text-orange transition-colors"
-              style={{ fontFamily: 'var(--font-instrument)' }}
+            {/* LIENS DE NAVIGATION */}
+            <motion.div 
+              className="relative z-10 h-full flex flex-col items-center justify-center -mt-20 gap-6"
+              variants={menuContainerVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
             >
-              WORKS
-            </Link>
-            <Link
-              href="/services"
-              onClick={handleLinkClick}
-              className="text-blanc text-4xl font-light hover:text-orange transition-colors"
-              style={{ fontFamily: 'var(--font-instrument)' }}
-            >
-              SERVICES
-            </Link>
-            <Link
-              href="/about"
-              onClick={handleLinkClick}
-              className="text-blanc text-4xl font-light hover:text-orange transition-colors"
-              style={{ fontFamily: 'var(--font-instrument)' }}
-            >
-              ABOUT
-            </Link>
-            <Link
-              href="/blog"
-              onClick={handleLinkClick}
-              className="text-blanc text-4xl font-light hover:text-orange transition-colors"
-              style={{ fontFamily: 'var(--font-instrument)' }}
-            >
-              BLOG
-            </Link>
-            <Link
-              href="/contact"
-              onClick={handleLinkClick}
-              className="text-blanc text-4xl font-light hover:text-orange transition-colors"
-              style={{ fontFamily: 'var(--font-instrument)' }}
-            >
-              CONTACT
-            </Link>
-          </nav>
-
-          
-        </div>
-      </div>
+              {['WORKS', 'SERVICES', 'ABOUT', 'BLOG', 'CONTACT'].map((item) => (
+                <motion.div key={item} variants={linkItemVariants}>
+                  <Link
+                    href={`/${item.toLowerCase()}`}
+                    onClick={handleLinkClick}
+                    className="text-blanc text-[clamp(32px,8vw,50px)] font-light hover:text-black hover:italic transition-all duration-300"
+                    style={{ fontFamily: 'var(--font-instrument)' }}
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

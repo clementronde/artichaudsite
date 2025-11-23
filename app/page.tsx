@@ -592,25 +592,14 @@ const services = [
 </section>
 {/* SERVICES */}
 <section className="relative section-padding bg-noir overflow-hidden">
-<div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
-    <div className="relative h-full max-w-[1600px] mx-auto px-[clamp(1rem,3vw,3rem)]">
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '26.5%' }}
-      />
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '50%' }}
-      />
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '73.5%' }}
-      />
-    </div>
-  </div>
+  
+  {/* 1. BACKGROUND LIGNES (Pleine largeur) */}
+  
 
-
-  <div className="container-custom relative z-10">
+  {/* 2. CONTENU (Pleine largeur) */}
+  {/* Remplacement de container-custom par w-full + padding */}
+  <div className="w-full px-6 lg:px-10 relative z-10">
+    
     {/* Titre */}
     <div className="mb-12 lg:mb-20">
       <h2 className="inline">
@@ -635,9 +624,7 @@ const services = [
         <div
           key={service.number}
           className="group relative cursor-pointer transition-all duration-500 border-t border-blanc/20 hover:border-transparent"
-          style={{
-            borderBottom: index === services.length - 1 ? '0px solid rgba(233, 70, 1, 0.2)' : 'none'
-          }}
+          // J'ai nettoyé le style borderBottom inutile ici
         >
           {/* Fond hover avec dégradé */}
           <div 
@@ -649,10 +636,11 @@ const services = [
 
           {/* Contenu */}
           <div className="relative">
-            {/* Layout Desktop - Grid 4 colonnes */}
+            {/* Layout Desktop - Grid 4 colonnes PLEINE LARGEUR */}
             <div className="hidden lg:grid lg:grid-cols-4 gap-0 min-h-[200px]">
+              
               {/* Numéro - Zone 1 (0-25%) */}
-              <div className="col-span-1 flex items-start py-12 pl-8">
+              <div className="col-span-1 flex items-start py-12 pl-4">
                 <span 
                   style={{
                     color: '#F2F2F2',
@@ -668,7 +656,8 @@ const services = [
               </div>
 
               {/* Titre et description - Zone 2 (25-50%) */}
-              <div className="col-span-1 pr-8 flex flex-col justify-start py-12">
+              {/* Ajout border-l pour marquer la colonne */}
+              <div className="col-span-1 pr-8 flex flex-col justify-start py-12 pl-6 border-l border-blanc/10 group-hover:border-transparent transition-colors">
                 <h3 
                   className="mb-4"
                   style={{
@@ -695,44 +684,44 @@ const services = [
                 </p>
               </div>
 
-              {/* Image 1 - Zone 3 (50-75%) - Apparaît au hover */}
-              <div className="col-span-1 relative overflow-hidden min-h-[200px]"> {/* Ajout de min-h pour la sécurité */}
-  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-    {service.image1 && (
-      <div className="relative w-full h-full">
-        <Image 
-          src={service.image1} 
-          alt={`${service.title} 1`}
-          fill
-          sizes="25vw"
-          className="object-cover"
-        />
-      </div>
-    )}
-  </div>
-</div>
+              {/* Image 1 - Zone 3 (50-75%) */}
+              <div className="col-span-1 relative overflow-hidden min-h-[200px] border-l border-blanc/10 group-hover:border-transparent transition-colors">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {service.image1 && (
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src={service.image1} 
+                        alt={`${service.title} 1`}
+                        fill
+                        sizes="25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
 
-              {/* Image 2 - Zone 4 (75-100%) - Apparaît au hover */}
-           <div className="col-span-1 relative overflow-hidden min-h-[200px]"> {/* Ajout de min-h pour la sécurité */}
-  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-    {service.image1 && (
-      <div className="relative w-full h-full">
-        <Image 
-          src={service.image2} 
-          alt={`${service.title} 2`}
-          fill
-          sizes="25vw"
-          className="object-cover"
-        />
-      </div>
-    )}
-  </div>
-</div>
+              {/* Image 2 - Zone 4 (75-100%) */}
+              <div className="col-span-1 relative overflow-hidden min-h-[200px] border-l border-blanc/10 group-hover:border-transparent transition-colors">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {/* Correction ici: check image2 et non image1 */}
+                  {service.image2 && (
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src={service.image2} 
+                        alt={`${service.title} 2`}
+                        fill
+                        sizes="25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* Layout Mobile - Empilement vertical */}
+            {/* Layout Mobile - Empilement vertical (Inchangé) */}
             <div className="lg:hidden py-8 px-4">
-              {/* Numéro et Titre sur la même ligne */}
               <div className="flex items-start gap-4 mb-4">
                 <span 
                   style={{
@@ -760,8 +749,6 @@ const services = [
                   {service.title}
                 </h3>
               </div>
-
-              {/* Description */}
               <p 
                 className="pl-0"
                 style={{
