@@ -6,7 +6,8 @@ import Footer from '@/components/footer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import AboutSection from '@/components/AboutSection';
-
+import WorkItem from '@/components/WorkItem';
+import ServicesSection from '@/components/ServicesSection';
 
 export const metadata: Metadata = {
   title: 'Artichaud Studio | Agence de Design & Marketing Digital à Paris',
@@ -151,47 +152,47 @@ export default function Home() {
   // Dans app/page.tsx, mettre à jour le tableau services :
 
 const services = [
-  {
-    number: '01',
-    title: 'Brand strategy',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    image1: '/img/services/brandstrategy1.jpg',
-    image2: '/img/services/brandstrategy2.jpg',
-  },
-  {
-    number: '02',
-    title: 'Visual identity',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    {
+      number: '01',
+      title: 'Brand strategy',
+      description:
+        'Audit, positionnement et plateforme de marque. Nous définissons l’ADN unique de votre entreprise pour connecter durablement avec votre audience cible et vous démarquer.',
       image1: '/img/services/brandstrategy1.jpg',
       image2: '/img/services/brandstrategy2.jpg',
-  },
-  {
-    number: '03',
-    title: 'Webdesign',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      image1: '/img/services/brandstrategy1.jpg',
-      image2: '/img/services/brandstrategy2.jpg',
-  },
-  {
-    number: '04',
-    title: 'Webmarketing',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      image1: '/img/services/brandstrategy1.jpg',
-      image2: '/img/services/brandstrategy2.jpg',
-  },
-  {
-    number: '05',
-    title: 'Shooting produit',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      image1: '/img/services/brandstrategy1.jpg',
-      image2: '/img/services/brandstrategy2.jpg',
-  },
-];
+    },
+    {
+      number: '02',
+      title: 'Visual identity',
+      description:
+        'Création de logo, charte graphique et univers visuel complet. Une identité forte, cohérente et mémorable qui incarne vos valeurs au premier regard.',
+        image1: '/img/services/brandstrategy1.jpg', // Pense à mettre les bonnes images si tu les as
+        image2: '/img/services/brandstrategy2.jpg',
+    },
+    {
+      number: '03',
+      title: 'Webdesign',
+      description:
+        'Conception de sites web immersifs et performants. Nous allions esthétique et ergonomie (UX/UI) pour offrir une expérience utilisateur fluide qui convertit vos visiteurs.',
+        image1: '/img/services/brandstrategy1.jpg',
+        image2: '/img/services/brandstrategy2.jpg',
+    },
+    {
+      number: '04',
+      title: 'Webmarketing',
+      description:
+        'Stratégies d’acquisition (SEO, SEA) et Social Media. Nous boostons votre visibilité en ligne pour générer du trafic qualifié et maximiser votre retour sur investissement.',
+        image1: '/img/services/brandstrategy1.jpg',
+        image2: '/img/services/brandstrategy2.jpg',
+    },
+    {
+      number: '05',
+      title: 'Shooting produit',
+      description:
+        'Direction artistique et photographie professionnelle. Des visuels percutants et des packshots haute définition pour sublimer vos produits sur tous vos supports de communication.',
+        image1: '/img/services/brandstrategy1.jpg',
+        image2: '/img/services/brandstrategy2.jpg',
+    },
+  ];
 
   return (
     <>
@@ -266,508 +267,57 @@ const services = [
       <div className="w-full h-[90px] bg-[#E94601]"></div>
       
      {/* SELECTED WORKS */}
-<section className="relative section-padding bg-noir overflow-hidden">
-  
-  {/* Traits verticaux - Cachés sur mobile */}
-  <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
-    <div className="relative h-full max-w-[1600px] mx-auto px-[clamp(1rem,3vw,3rem)]">
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '26.5%' }}
-      />
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '50%' }}
-      />
-      <div 
-        className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-        style={{ left: '73.5%' }}
-      />
-    </div>
-  </div>
-
-  <div className="container-custom relative z-10">
-    {/* Titre */}
-    <div className="mb-12 lg:mb-20">
-      <h2 className="inline">
-        <span 
-          className="text-blanc font-bold"
-          style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
-        >
-          Selected
-        </span>
-        <span 
-          className="text-blanc font-light italic ml-4"
-          style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
-        >
-          (Works)
-        </span>
-      </h2>
-    </div>
-
-    {/* Projets */}
-    <div className="space-y-16 lg:space-y-32">
-      {selectedWorks.map((work, index) => {
-        // Définir le layout selon l'index
-        let layout;
-        if (index === 0) layout = 'charitio';      // Image 50-75%, Texte 75-100%
-        else if (index === 1) layout = 'multiface'; // Image 0-50%, Texte 50-75%
-        else if (index === 2) layout = 'disobey';   // Image 25-50%, Texte 50-75%
-        else if (index === 3) layout = 'comon';     // Image 0-25%, Texte 25-50%
-        else if (index === 4) layout = 'keleti';    // Image 25-75%, Texte 75-100%
+      <section className="relative section-padding bg-noir overflow-hidden">
         
-        return (
-          <article key={work.id} className="relative">
-            
-            {/* DESKTOP */}
-<div className="hidden lg:block">
-  {layout === 'charitio' && (
-    <div className="relative grid grid-cols-4 gap-0">
-      <div className="col-span-1"></div>
-      <div className="col-span-1"></div>
-      <div className="col-span-1 px-0">
-  <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover"
-    />
-  </div>
-</div>
-      <div className="col-span-1 pl-6 pr-6 flex flex-col">
-        <div className="flex items-start justify-between mb-auto">
-          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
-            {work.title}
-          </h3>
-          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
-            ( {work.number} )
-          </span>
-        </div>
-        <div className="mt-auto">
-          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-            Deliverables
-          </p>
-          <ul className="space-y-2">
-            {work.deliverables.map((deliverable, i) => (
-              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )}
-
-  {layout === 'multiface' && (
-    <div className="relative grid grid-cols-4 gap-0">
-      <div className="col-span-2 px-0">
-  <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover"
-    />
-  </div>
-</div>
-      <div className="col-span-1 pl-6 pr-6 flex flex-col">
-        <div className="flex items-start justify-between mb-auto">
-          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
-            {work.title}
-          </h3>
-          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
-            ( {work.number} )
-          </span>
-        </div>
-        <div className="mt-auto">
-          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-            Deliverables
-          </p>
-          <ul className="space-y-2">
-            {work.deliverables.map((deliverable, i) => (
-              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="col-span-1"></div>
-    </div>
-  )}
-
-  {layout === 'disobey' && (
-    <div className="relative grid grid-cols-4 gap-0">
-      <div className="col-span-1"></div>
-       <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover"
-    />
-  </div>
-      <div className="col-span-1 pl-6 pr-6 flex flex-col">
-        <div className="flex items-start justify-between mb-auto">
-          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
-            {work.title}
-          </h3>
-          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
-            ( {work.number} )
-          </span>
-        </div>
-        <div className="mt-auto">
-          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-            Deliverables
-          </p>
-          <ul className="space-y-2">
-            {work.deliverables.map((deliverable, i) => (
-              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="col-span-1"></div>
-    </div>
-  )}
-
-  {layout === 'comon' && (
-    <div className="relative grid grid-cols-4 gap-0">
-       <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover"
-    />
-  </div>
-      <div className="col-span-1 pl-6 pr-6 flex flex-col">
-        <div className="flex items-start justify-between mb-auto">
-          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
-            {work.title}
-          </h3>
-          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
-            ( {work.number} )
-          </span>
-        </div>
-        <div className="mt-auto">
-          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-            Deliverables
-          </p>
-          <ul className="space-y-2">
-            {work.deliverables.map((deliverable, i) => (
-              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="col-span-2"></div>
-    </div>
-  )}
-
-  {layout === 'keleti' && (
-    <div className="relative grid grid-cols-4 gap-0">
-      <div className="col-span-1"></div>
-       <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover"
-    />
-  </div>
-      <div className="col-span-1 pl-6 pr-6 flex flex-col">
-        <div className="flex items-start justify-between mb-auto">
-          <h3 style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase'}}>
-            {work.title}
-          </h3>
-          <span style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(11.2px, 1.11vw, 16px)', fontWeight: 700, lineHeight: '140%', textTransform: 'uppercase', marginLeft: 'clamp(12px, 1.11vw, 16px)', flexShrink: 0}}>
-            ( {work.number} )
-          </span>
-        </div>
-        <div className="mt-auto">
-          <p className="mb-3" style={{color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 300, lineHeight: '140%'}}>
-            Deliverables
-          </p>
-          <ul className="space-y-2">
-            {work.deliverables.map((deliverable, i) => (
-              <li key={i} style={{color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(8.4px, 0.83vw, 12px)', fontWeight: 400, lineHeight: '140%', textTransform: 'uppercase'}}>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )}
-</div>
-
-            {/* MOBILE */}
-<div className="lg:hidden bg-[#1a1a1a] rounded-lg overflow-hidden">
-  {/* Titre et Numéro au-dessus */}
-  <div className=" pb-4">
-    <div className="flex items-start justify-between">
-      <h3 style={{
-        color: '#F2F2F2', 
-        fontFamily: 'var(--font-inter)', 
-        fontSize: '14px', 
-        fontWeight: 700, 
-        lineHeight: '140%', 
-        textTransform: 'uppercase'
-      }}>
-        {work.title}
-      </h3>
-      <span style={{
-        color: '#F2F2F2', 
-        fontFamily: 'var(--font-inter)', 
-        fontSize: '14px', 
-        fontWeight: 700, 
-        lineHeight: '140%', 
-        textTransform: 'uppercase',
-        marginLeft: '16px',
-        flexShrink: 0
-      }}>
-        ( {work.number} )
-      </span>
-    </div>
-  </div>
-
-  {/* Image pleine largeur */}
- <div className="w-full">
-  <div className="relative w-full aspect-[4/3]">
-    <Image 
-      src={work.image} 
-      alt={work.title} 
-      fill
-      sizes="100vw"
-      className="object-cover"
-    />
-  </div>
-</div>
-  
-  {/* Deliverables en dessous */}
-  <div className=" pt-4">
-    <p className="mb-3" style={{
-      color: 'rgba(255, 255, 255, 0.70)', 
-      fontFamily: 'var(--font-inter)', 
-      fontSize: '11px', 
-      fontWeight: 300, 
-      lineHeight: '140%'
-    }}>
-      Deliverables
-    </p>
-    <ul className="space-y-2">
-      {work.deliverables.map((deliverable, i) => (
-        <li key={i} style={{
-          color: '#F2F2F2', 
-          fontFamily: 'var(--font-inter)', 
-          fontSize: '11px', 
-          fontWeight: 400, 
-          lineHeight: '140%', 
-          textTransform: 'uppercase'
-        }}>
-          {deliverable}
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
-
-          </article>
-        );
-      })}
-    </div>
-  </div>
-</section>
-{/* SERVICES */}
-<section className="relative section-padding bg-noir overflow-hidden">
-  
-  {/* 1. BACKGROUND LIGNES (Pleine largeur) */}
-  
-
-  {/* 2. CONTENU (Pleine largeur) */}
-  {/* Remplacement de container-custom par w-full + padding */}
-  <div className="w-full px-6 lg:px-10 relative z-10">
-    
-    {/* Titre */}
-    <div className="mb-12 lg:mb-20">
-      <h2 className="inline">
-        <span 
-          className="text-blanc font-bold"
-          style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
-        >
-          Services
-        </span>
-        <span 
-          className="text-blanc font-light italic ml-4"
-          style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
-        >
-          (yeah)
-        </span>
-      </h2>
-    </div>
-
-    {/* Liste des services */}
-    <div className="space-y-0">
-      {services.map((service, index) => (
-        <div
-          key={service.number}
-          className="group relative cursor-pointer transition-all duration-500 border-t border-blanc/20 hover:border-transparent"
-          // J'ai nettoyé le style borderBottom inutile ici
-        >
-          {/* Fond hover avec dégradé */}
-          <div 
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{
-              background: 'linear-gradient(90deg, #FF0000 0%, #FF6F00 50%, #FF9D00 100%)'
-            }}
-          />
-
-          {/* Contenu */}
-          <div className="relative">
-            {/* Layout Desktop - Grid 4 colonnes PLEINE LARGEUR */}
-            <div className="hidden lg:grid lg:grid-cols-4 gap-0 min-h-[200px]">
-              
-              {/* Numéro - Zone 1 (0-25%) */}
-              <div className="col-span-1 flex items-start py-12 pl-4">
-                <span 
-                  style={{
-                    color: '#F2F2F2',
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: 'clamp(11.2px, 1.11vw, 16px)',
-                    fontWeight: 700,
-                    lineHeight: '140%',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  ( {service.number} )
-                </span>
-              </div>
-
-              {/* Titre et description - Zone 2 (25-50%) */}
-              {/* Ajout border-l pour marquer la colonne */}
-              <div className="col-span-1 pr-8 flex flex-col justify-start py-12 pl-6 border-l border-blanc/10 group-hover:border-transparent transition-colors">
-                <h3 
-                  className="mb-4"
-                  style={{
-                    color: '#F2F2F2',
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: 'clamp(15.4px, 1.53vw, 22px)',
-                    fontWeight: 700,
-                    lineHeight: '140%',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  {service.title}
-                </h3>
-                <p 
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.70)',
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: '14px',
-                    fontWeight: 300,
-                    lineHeight: '140%'
-                  }}
-                >
-                  {service.description}
-                </p>
-              </div>
-
-              {/* Image 1 - Zone 3 (50-75%) */}
-              <div className="col-span-1 relative overflow-hidden min-h-[200px] border-l border-blanc/10 group-hover:border-transparent transition-colors">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  {service.image1 && (
-                    <div className="relative w-full h-full">
-                      <Image 
-                        src={service.image1} 
-                        alt={`${service.title} 1`}
-                        fill
-                        sizes="25vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Image 2 - Zone 4 (75-100%) */}
-              <div className="col-span-1 relative overflow-hidden min-h-[200px] border-l border-blanc/10 group-hover:border-transparent transition-colors">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  {/* Correction ici: check image2 et non image1 */}
-                  {service.image2 && (
-                    <div className="relative w-full h-full">
-                      <Image 
-                        src={service.image2} 
-                        alt={`${service.title} 2`}
-                        fill
-                        sizes="25vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Layout Mobile - Empilement vertical (Inchangé) */}
-            <div className="lg:hidden py-8 px-4">
-              <div className="flex items-start gap-4 mb-4">
-                <span 
-                  style={{
-                    color: '#F2F2F2',
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    lineHeight: '140%',
-                    textTransform: 'uppercase',
-                    flexShrink: 0
-                  }}
-                >
-                  ( {service.number} )
-                </span>
-                <h3 
-                  style={{
-                    color: '#F2F2F2',
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: '16px',
-                    fontWeight: 700,
-                    lineHeight: '140%',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  {service.title}
-                </h3>
-              </div>
-              <p 
-                className="pl-0"
-                style={{
-                  color: 'rgba(255, 255, 255, 0.70)',
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: '14px',
-                  fontWeight: 300,
-                  lineHeight: '140%'
-                }}
-              >
-                {service.description}
-              </p>
-            </div>
+        {/* === 1. RESTAURATION DES TRAITS VERTICAUX === */}
+        <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
+          <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
+            <div 
+              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+              style={{ left: '26.5%' }}
+            />
+            <div 
+              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+              style={{ left: '50%' }}
+            />
+            <div 
+              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
+              style={{ left: '73.5%' }}
+            />
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+
+        {/* Conteneur principal (Aligné avec les traits) */}
+        <div className="container-custom relative z-10">
+          {/* Titre */}
+          <div className="mb-12 lg:mb-20">
+            <h2 className="inline">
+              <span 
+                className="text-blanc font-bold"
+                style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
+              >
+                Selected
+              </span>
+              <span 
+                className="text-blanc font-light italic ml-4"
+                style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
+              >
+                (Works)
+              </span>
+            </h2>
+          </div>
+
+          {/* Liste des projets avec espacements corrigés */}
+          <div className="space-y-16 lg:space-y-32">
+            {selectedWorks.map((work, index) => (
+              <WorkItem key={work.id} work={work} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+      
+{/* ABOUT ARTICHAUD */}
+      <ServicesSection services={services} />
 {/* ABOUT ARTICHAUD */}
 <AboutSection />
       {/* ACTUALITY (BLOG) */}
