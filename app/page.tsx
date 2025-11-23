@@ -1,4 +1,4 @@
-import HeatEffect from '@/components/HeatEffect';
+import dynamic from 'next/dynamic';
 import Header from '@/components/header'; 
 import Link from 'next/link';
 import { getLatestPosts } from '@/lib/blog';
@@ -8,6 +8,11 @@ import Image from 'next/image';
 import AboutSection from '@/components/AboutSection';
 import WorkItem from '@/components/WorkItem';
 import ServicesSection from '@/components/ServicesSection';
+
+const HeatEffect = dynamic(() => import('@/components/HeatEffect'), {
+  ssr: false, // Ne pas générer côté serveur
+  loading: () => <div className="absolute inset-0 bg-black" />, // Placeholder léger
+});
 
 export const metadata: Metadata = {
   title: 'Artichaud Studio | Agence de Design & Marketing Digital à Paris',
@@ -95,7 +100,7 @@ export default function Home() {
     '@type': 'Organization',
     name: 'Artichaud Studio',
     url: 'https://artichaud-studio',
-    logo: 'https://artichaud-studio/img/Logo.svg',
+    logo: 'https://artichaud-studio/img/Logo.avif',
     description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale',
     address: {
       '@type': 'PostalAddress',
@@ -210,13 +215,13 @@ const services = [
        {/* 1️⃣ Logo géant — EN ARRIÈRE PLAN (z-0) */}
   <div className="absolute inset-x-0 bottom-0 z-0 flex justify-center items-end h-full pb-[10vh]">
     <Image
-      src="/img/Logo.svg"
-      alt="Artichaud logo"
-      width={1200} 
-      height={400}
-      // Opacité à 100% car c'est la chaleur qui le cache par défaut
-      className="w-[90vw] max-w-[1600px] h-auto object-contain opacity-100" 
-    />
+  src="/img/Logo.avif"
+  alt="Artichaud logo"
+  width={1200}
+  height={400}
+  className="..."
+  priority 
+/>
   </div>
 
   {/* 2️⃣ Effet chaleur — AU PREMIER PLAN (z-10) */}

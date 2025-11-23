@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not dead"
+  ],
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
     "date-fns": "^3.3.0",
