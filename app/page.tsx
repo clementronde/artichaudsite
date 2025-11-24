@@ -8,26 +8,10 @@ import Image from 'next/image';
 import AboutSection from '@/components/AboutSection';
 import WorkItem from '@/components/WorkItem';
 import ServicesSection from '@/components/ServicesSection';
-import { useEffect } from 'react'; // Ajout pour gérer le scroll proprement
+import ScrollManager from '@/components/ScrollManager';
 
 // Composant client pour l'effet de scroll (optionnel si tu veux le séparer)
-const ScrollEffect = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroText = document.getElementById('hero-text');
-      if (heroText) {
-        const scrolled = window.scrollY;
-        const opacity = Math.max(0, 1 - scrolled / 300);
-        const translateY = scrolled * 0.5;
-        heroText.style.opacity = opacity.toString();
-        heroText.style.transform = `translateY(${translateY}px)`;
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  return null;
-};
+
 
 const HeatEffect = dynamic(() => import('@/components/HeatEffect'), {
   ssr: false, 
@@ -205,7 +189,7 @@ export default function Home() {
 
   return (
     <>
-      <ScrollEffect /> {/* Déclenchement propre de l'effet de scroll */}
+      <ScrollManager />
       
       {/* Schema.org JSON-LD */}
       <script
