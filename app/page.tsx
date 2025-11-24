@@ -8,17 +8,35 @@ import Image from 'next/image';
 import AboutSection from '@/components/AboutSection';
 import WorkItem from '@/components/WorkItem';
 import ServicesSection from '@/components/ServicesSection';
+import { useEffect } from 'react'; // Ajout pour gérer le scroll proprement
+
+// Composant client pour l'effet de scroll (optionnel si tu veux le séparer)
+const ScrollEffect = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroText = document.getElementById('hero-text');
+      if (heroText) {
+        const scrolled = window.scrollY;
+        const opacity = Math.max(0, 1 - scrolled / 300);
+        const translateY = scrolled * 0.5;
+        heroText.style.opacity = opacity.toString();
+        heroText.style.transform = `translateY(${translateY}px)`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  return null;
+};
 
 const HeatEffect = dynamic(() => import('@/components/HeatEffect'), {
-  ssr: false, // Ne pas générer côté serveur
-  loading: () => <div className="absolute inset-0 bg-black" />, // Placeholder léger
+  ssr: false, 
+  loading: () => <div className="absolute inset-0 bg-black" />, 
 });
 
 export const metadata: Metadata = {
   title: 'Artichaud Studio | Agence de Design & Marketing Digital à Paris',
-  
   description: 'Artichaud Studio : Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise en identité visuelle, UX/UI design et marketing digital.',
-  
   keywords: [
     'agence design Paris',
     'branding',
@@ -31,28 +49,24 @@ export const metadata: Metadata = {
     'shooting produit',
     'agence créative',
   ],
-  
-  // Auteur et créateur
-  authors: [{ name: 'Artichaud Studio', url: 'https://artichaud-studio' }],
+  authors: [{ name: 'Artichaud Studio', url: 'https://artichaud-studio.com' }], // Ajout du .com
   creator: 'Artichaud Studio',
   publisher: 'Artichaud Studio',
   
-  // URL de base (important pour les chemins relatifs)
-  metadataBase: new URL('https://artichaud-studio'),
+  // URL de base CORRECTE (Crucial pour le SEO)
+  metadataBase: new URL('https://artichaud-studio.com'),
   
-  // URL canonique (évite le duplicate content)
   alternates: {
-    canonical: 'https://artichaud-studio',
+    canonical: 'https://artichaud-studio.com',
   },
   
-  // Open Graph (Facebook, LinkedIn, WhatsApp, etc.)
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://artichaud-studio',
+    url: 'https://artichaud-studio.com',
     siteName: 'Artichaud Studio',
     title: 'Artichaud Studio | Agence de Design & Marketing Digital',
-    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets avec notre expertise.',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale. Mettez le feu à vos projets.',
     images: [
       {
         url: '/opengraph-image.jpg', 
@@ -63,7 +77,6 @@ export const metadata: Metadata = {
     ],
   },
   
-  // Twitter Cards
   twitter: {
     card: 'summary_large_image',
     site: '@artichaudstudio',
@@ -84,35 +97,33 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  
-  verification: {
-    // google: 'ton-code-ici', // Décommente quand tu auras le code
-  },
 };
 
-
 export default function Home() {
-  // ... tout le reste du code
-    const latestPosts = getLatestPosts(2);
-  // Schema.org pour l'organisation
+  const latestPosts = getLatestPosts(2);
+  
+  // --- SCHEMA ORG OPTIMISÉ ---
   const organizationSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'ProfessionalService', // Mieux que "Organization" pour le SEO Local
     name: 'Artichaud Studio',
-    url: 'https://artichaud-studio',
-    logo: 'https://artichaud-studio/img/Logo.avif',
-    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale',
+    url: 'https://artichaud-studio.com',
+    logo: 'https://artichaud-studio.com/img/Logo.avif',
+    image: 'https://artichaud-studio.com/opengraph-image.jpg',
+    description: 'Agence créative spécialisée en branding, webdesign et stratégie digitale.',
+    email: 'artichaud.studio@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Paris',
+      addressLocality: 'Paris', // Ajoutez l'adresse précise si vous l'avez sur GMB
       addressCountry: 'FR',
     },
-    email: 'artichaud.studio@gmail.com',
+    priceRange: "$$",
+    // C'est ici qu'on fait le lien officiel avec les réseaux
     sameAs: [
-      'https://www.instagram.com/artichaudstudio',
       'https://www.linkedin.com/company/artichaud-studio',
-      'https://www.tiktok.com/@artichaudstudio',
-      'https://www.pinterest.com/artichaudstudio',
+      'https://www.instagram.com/artichaudstudio',
+      'https://www.facebook.com/artichaudstudio',
+      'https://www.pinterest.com/artichaudstudio', 
     ],
   };
 
@@ -154,111 +165,92 @@ export default function Home() {
     },
   ];
 
-  // Dans app/page.tsx, mettre à jour le tableau services :
-
-const services = [
+  const services = [
     {
       number: '01',
       title: 'Brand strategy',
-      description:
-        'Audit, positionnement et plateforme de marque. Nous définissons l’ADN unique de votre entreprise pour connecter durablement avec votre audience cible et vous démarquer.',
+      description: 'Audit, positionnement et plateforme de marque. Nous définissons l’ADN unique de votre entreprise pour connecter durablement avec votre audience cible et vous démarquer.',
       image1: '/img/services/brandstrategy1.jpg',
       image2: '/img/services/brandstrategy2.jpg',
     },
     {
       number: '02',
       title: 'Visual identity',
-      description:
-        'Création de logo, charte graphique et univers visuel complet. Une identité forte, cohérente et mémorable qui incarne vos valeurs au premier regard.',
-        image1: '/img/services/brandstrategy1.jpg', // Pense à mettre les bonnes images si tu les as
-        image2: '/img/services/brandstrategy2.jpg',
+      description: 'Création de logo, charte graphique et univers visuel complet. Une identité forte, cohérente et mémorable qui incarne vos valeurs au premier regard.',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
     },
     {
       number: '03',
       title: 'Webdesign',
-      description:
-        'Conception de sites web immersifs et performants. Nous allions esthétique et ergonomie (UX/UI) pour offrir une expérience utilisateur fluide qui convertit vos visiteurs.',
-        image1: '/img/services/brandstrategy1.jpg',
-        image2: '/img/services/brandstrategy2.jpg',
+      description: 'Conception de sites web immersifs et performants. Nous allions esthétique et ergonomie (UX/UI) pour offrir une expérience utilisateur fluide qui convertit vos visiteurs.',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
     },
     {
       number: '04',
       title: 'Webmarketing',
-      description:
-        'Stratégies d’acquisition (SEO, SEA) et Social Media. Nous boostons votre visibilité en ligne pour générer du trafic qualifié et maximiser votre retour sur investissement.',
-        image1: '/img/services/brandstrategy1.jpg',
-        image2: '/img/services/brandstrategy2.jpg',
+      description: 'Stratégies d’acquisition (SEO, SEA) et Social Media. Nous boostons votre visibilité en ligne pour générer du trafic qualifié et maximiser votre retour sur investissement.',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
     },
     {
       number: '05',
       title: 'Shooting produit',
-      description:
-        'Direction artistique et photographie professionnelle. Des visuels percutants et des packshots haute définition pour sublimer vos produits sur tous vos supports de communication.',
-        image1: '/img/services/brandstrategy1.jpg',
-        image2: '/img/services/brandstrategy2.jpg',
+      description: 'Direction artistique et photographie professionnelle. Des visuels percutants et des packshots haute définition pour sublimer vos produits sur tous vos supports de communication.',
+      image1: '/img/services/brandstrategy1.jpg',
+      image2: '/img/services/brandstrategy2.jpg',
     },
   ];
 
   return (
     <>
-       {/* Schema.org JSON-LD */}
+      <ScrollEffect /> {/* Déclenchement propre de l'effet de scroll */}
+      
+      {/* Schema.org JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-      {/* HEADER / NAVIGATION */}
+      
       <Header />
 
       {/* HERO SECTION */}
       <section className="relative h-screen overflow-hidden bg-black flex items-center justify-center">
-        {/* 1️⃣ Logo géant — fond total en largeur */}
-       {/* 1️⃣ Logo géant — EN ARRIÈRE PLAN (z-0) */}
-  <div className="absolute inset-x-0 bottom-0 z-0 flex justify-center items-end h-full pb-[10vh]">
-    <Image
-  src="/img/Logo.avif"
-  alt="Artichaud logo"
-  width={1200}
-  height={400}
-  className="..."
-  priority 
-/>
-  </div>
+        {/* 1️⃣ Logo géant */}
+        <div className="absolute inset-x-0 bottom-0 z-0 flex justify-center items-end h-full pb-[10vh]">
+          <Image
+            src="/img/Logo.avif"
+            alt="Artichaud Studio Logo"
+            width={1200}
+            height={400}
+            priority 
+          />
+        </div>
 
-  {/* 2️⃣ Effet chaleur — AU PREMIER PLAN (z-10) */}
-  {/* C'est ce calque qui sera "troué" par la souris */}
-  <div className="absolute inset-0 z-10 mix-blend-normal">
-    <HeatEffect />
-  </div>
+        {/* 2️⃣ Effet chaleur */}
+        <div className="absolute inset-0 z-10 mix-blend-normal">
+          <HeatEffect />
+        </div>
 
-  {/* 3️⃣ Vignette et Texte — ENCORE PLUS DEVANT (z-20) */}
-  <div
-    aria-hidden
-    className="absolute inset-0 z-20 pointer-events-none"
-    style={{
-      // Léger dégradé pour assombrir les bords
-      background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%)',
-    }}
-  />
-
-        {/* 5️⃣ Baseline + flèche — plus bas maintenant */}
+        {/* 3️⃣ Vignette */}
         <div
-          className="absolute z-40 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4
-                  top-[15vh] sm:top-[18vh] md:top-[25vh]"
+          aria-hidden
+          className="absolute inset-0 z-20 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%)',
+          }}
+        />
+
+        {/* 5️⃣ Baseline + flèche */}
+        {/* J'ai ajouté l'ID 'hero-text' ici pour que l'animation de scroll fonctionne */}
+        <div
+          id="hero-text" 
+          className="absolute z-40 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 top-[15vh] sm:top-[18vh] md:top-[25vh] transition-opacity duration-100 ease-out"
         >
           <div className="rounded-full border border-white/25 w-10 h-10 grid place-items-center opacity-80">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              className="text-white/90"
-            >
-              <path
-                d="M12 5v14m0 0L5 12m7 7 7-7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="20" height="20" viewBox="0 0 24 24" className="text-white/90">
+              <path d="M12 5v14m0 0L5 12m7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
 
@@ -271,48 +263,28 @@ const services = [
       {/* ⭐ BARRE ORANGE 90px */}
       <div className="w-full h-[90px] bg-[#E94601]"></div>
       
-     {/* SELECTED WORKS */}
+      {/* SELECTED WORKS */}
       <section className="relative section-padding bg-noir overflow-hidden">
-        
-        {/* === 1. RESTAURATION DES TRAITS VERTICAUX === */}
         <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
           <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(1rem,3vw,3rem)]">
-            <div 
-              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-              style={{ left: '26.5%' }}
-            />
-            <div 
-              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-              style={{ left: '50%' }}
-            />
-            <div 
-              className="absolute top-0 bottom-0 w-[1px] bg-blanc/10"
-              style={{ left: '73.5%' }}
-            />
+            <div className="absolute top-0 bottom-0 w-[1px] bg-blanc/10" style={{ left: '26.5%' }} />
+            <div className="absolute top-0 bottom-0 w-[1px] bg-blanc/10" style={{ left: '50%' }} />
+            <div className="absolute top-0 bottom-0 w-[1px] bg-blanc/10" style={{ left: '73.5%' }} />
           </div>
         </div>
 
-        {/* Conteneur principal (Aligné avec les traits) */}
         <div className="container-custom relative z-10">
-          {/* Titre */}
           <div className="mb-12 lg:mb-20">
             <h2 className="inline">
-              <span 
-                className="text-blanc font-bold"
-                style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}
-              >
+              <span className="text-blanc font-bold" style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}>
                 Selected
               </span>
-              <span 
-                className="text-blanc font-light italic ml-4"
-                style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}
-              >
+              <span className="text-blanc font-light italic ml-4" style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}>
                 (Works)
               </span>
             </h2>
           </div>
 
-          {/* Liste des projets avec espacements corrigés */}
           <div className="space-y-16 lg:space-y-32">
             {selectedWorks.map((work, index) => (
               <WorkItem key={work.id} work={work} index={index} />
@@ -321,80 +293,47 @@ const services = [
         </div>
       </section>
       
-{/* ABOUT ARTICHAUD */}
+      {/* SERVICES */}
       <ServicesSection services={services} />
-{/* ABOUT ARTICHAUD */}
-<AboutSection />
+
+      {/* ABOUT */}
+      <AboutSection />
+
       {/* ACTUALITY (BLOG) */}
       <section className="relative section-padding bg-noir overflow-hidden">
         <div className="container-custom">
-          {/* Titre */}
           <div className="mb-12 lg:mb-20">
             <h2 className="inline">
-              <span 
-                className="text-blanc font-bold"
-                style={{ 
-                  fontSize: 'clamp(63px, 6.25vw, 90px)', 
-                  fontFamily: 'var(--font-inter)' 
-                }}
-              >
+              <span className="text-blanc font-bold" style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}>
                 Actuality
               </span>
-              <span 
-                className="text-blanc font-light italic ml-4"
-                style={{ 
-                  fontSize: 'clamp(49px, 4.86vw, 70px)', 
-                  fontFamily: 'var(--font-instrument)' 
-                }}
-              >
+              <span className="text-blanc font-light italic ml-4" style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}>
                 ( crousti )
               </span>
             </h2>
           </div>
 
-          {/* Articles */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
             {latestPosts.map((post) => (
               <article key={post.id} className="group cursor-pointer">
                 <Link href={`/blog/${post.slug}`}>
-                  <p 
-                    className="mb-3"
-                    style={{
-                      color: '#F2F2F2',
-                      fontFamily: 'var(--font-instrument)',
-                      fontSize: 'clamp(14px, 1.18vw, 17px)',
-                      fontWeight: 400,
-                      fontStyle: 'italic',
-                    }}
-                  >
+                  <p className="mb-3" style={{ color: '#F2F2F2', fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14px, 1.18vw, 17px)', fontWeight: 400, fontStyle: 'italic' }}>
                     ( {post.category.toUpperCase()} )
                   </p>
-                  <h3 
-                    className="mb-6 uppercase group-hover:text-orange transition-colors"
-                    style={{
-                      color: '#F2F2F2',
-                      fontFamily: 'var(--font-inter)',
-                      fontSize: 'clamp(20px, 2.08vw, 30px)',
-                      fontWeight: 700,
-                      lineHeight: '120%',
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
+                  <h3 className="mb-6 uppercase group-hover:text-orange transition-colors" style={{ color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(20px, 2.08vw, 30px)', fontWeight: 700, lineHeight: '120%', letterSpacing: '-0.02em' }}>
                     {post.title}
                   </h3>
-                
-<div className="aspect-[4/3] overflow-hidden rounded-lg">
-  {/* Ajout du conteneur relative et utilisation de fill */}
-  <div className="relative w-full h-full"> 
-    <Image 
-      src={post.image} 
-      alt={post.title}
-      fill 
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover group-hover:scale-105 transition-transform duration-500"
-    />
-  </div>
-</div>
+                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                    <div className="relative w-full h-full"> 
+                      <Image 
+                        src={post.image} 
+                        alt={post.title}
+                        fill 
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  </div>
                 </Link>
               </article>
             ))}
@@ -403,24 +342,6 @@ const services = [
       </section>
 
       <Footer />
-      {/* Script pour faire disparaître le texte au scroll */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-  window.addEventListener('scroll', function() {
-    const heroText = document.getElementById('hero-text');
-    const scrolled = window.scrollY;
-    const opacity = Math.max(0, 1 - scrolled / 300);
-    const translateY = scrolled * 0.5;
-    
-    if (heroText) {
-      heroText.style.opacity = opacity;
-      heroText.style.transform = 'translateY(' + translateY + 'px)';
-    }
-  });
-`,
-        }}
-      />
     </>
   );
 }
