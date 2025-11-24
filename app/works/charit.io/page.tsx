@@ -1,5 +1,4 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
+
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 export default function CharitIOProject() {
   return (
     <>
-      <Header />
 
       {/* HERO SECTION */}
       <section className="relative bg-noir pt-32 pb-20 px-[clamp(1rem,3vw,3rem)]">
@@ -487,85 +485,6 @@ export default function CharitIOProject() {
         </div>
       </section>
 
-      {/* EXPLORE WORK SECTION */}
-      <section className="relative bg-noir py-20 px-[clamp(1rem,3vw,3rem)] border-t border-blanc/10">
-        <div className="container-custom">
-          <h2
-            className="text-blanc font-bold mb-12"
-            style={{
-              fontFamily: 'var(--font-inter)',
-              fontSize: 'clamp(40px, 4vw, 60px)',
-              lineHeight: '1.2'
-            }}
-          >
-            explore <span className="font-light italic" style={{ fontFamily: 'var(--font-instrument)' }}>Work</span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Article 1 */}
-            <article className="group cursor-pointer">
-              <Link href="/blog">
-                <div className="aspect-[3/2] bg-gradient-to-br from-orange/30 to-rouge/30 rounded-2xl mb-6 overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">
-                    📝
-                  </div>
-                </div>
-                <p
-                  className="text-orange font-light italic mb-3"
-                  style={{
-                    fontFamily: 'var(--font-instrument)',
-                    fontSize: 'clamp(12px, 1.11vw, 16px)',
-                  }}
-                >
-                  ( design )
-                </p>
-                <h3
-                  className="text-blanc group-hover:text-orange transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: 'clamp(24px, 2.08vw, 30px)',
-                    fontWeight: 700,
-                  }}
-                >
-                  Guide to rebranding
-                </h3>
-              </Link>
-            </article>
-
-            {/* Article 2 */}
-            <article className="group cursor-pointer">
-              <Link href="/blog">
-                <div className="aspect-[3/2] bg-gradient-to-br from-orange/30 to-rouge/30 rounded-2xl mb-6 overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">
-                    📝
-                  </div>
-                </div>
-                <p
-                  className="text-orange font-light italic mb-3"
-                  style={{
-                    fontFamily: 'var(--font-instrument)',
-                    fontSize: 'clamp(12px, 1.11vw, 16px)',
-                  }}
-                >
-                  ( marketing )
-                </p>
-                <h3
-                  className="text-blanc group-hover:text-orange transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-inter)',
-                    fontSize: 'clamp(24px, 2.08vw, 30px)',
-                    fontWeight: 700,
-                  }}
-                >
-                  Win to the salsifi
-                </h3>
-              </Link>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </>
   );
 }

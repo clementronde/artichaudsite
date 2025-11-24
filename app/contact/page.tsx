@@ -1,7 +1,5 @@
 'use client';
 
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import Image from 'next/image';
 import { useState, FormEvent, useRef } from 'react';
 
@@ -56,7 +54,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <Header />
 
       <main className="pt-24 min-h-screen bg-[#ffffff] text-[#F2F2F2]">
         <section className="section-padding pb-10">
@@ -262,7 +259,6 @@ export default function ContactPage() {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 }

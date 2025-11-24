@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import Image from 'next/image';
 import ServicesSection from '@/components/ServicesSection';
 
@@ -64,7 +62,6 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <Header />
       
       {/* 🚨 SUPPRESSION de overflow-hidden ici pour que le sticky fonctionne */}
       <main className="bg-noir text-blanc"> 
@@ -206,7 +203,6 @@ export default function ServicesPage() {
         <ServicesSection services={services} />
       
       </main>
-      <Footer />
     </>
   );
 }

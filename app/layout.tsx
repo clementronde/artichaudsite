@@ -3,8 +3,12 @@ import './globals.css';
 import { Inter, Instrument_Serif } from 'next/font/google';
 import GoogleTagManager, { GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 import JsonLd from '@/components/JsonLd';
-// 1. AJOUT : Import du composant SpeedInsights
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+// 👇 Imports des composants globaux
+import Header from '@/components/header'; // Import du Header
+import LatestPostsSection from "@/components/LatestPostsSection";
+import Footer from '@/components/footer'; 
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,19 +30,8 @@ export const metadata: Metadata = {
     default: 'Artichaud Studio - Mettez le feu à vos projets',
     template: '%s | Artichaud Studio', 
   },
-  description:
-    'Agence de design et marketing spécialisée en branding, webdesign et stratégie digitale.',
-  alternates: {
-    canonical: './',
-  },
-  openGraph: {
-    title: 'Artichaud Studio',
-    description: 'Mettez le feu à vos projets avec notre agence de design et marketing.',
-    url: 'https://artichaud-studio.com',
-    siteName: 'Artichaud Studio',
-    locale: 'fr_FR',
-    type: 'website',
-  },
+  description: 'Agence de design et marketing spécialisée en branding, webdesign et stratégie digitale.',
+  // ... reste des métadonnées
 };
 
 export default function RootLayout({
@@ -55,12 +48,15 @@ export default function RootLayout({
         className={`${inter.variable} ${instrumentSerif.variable} font-inter bg-noir text-blanc antialiased`}
       >
         <GoogleTagManagerNoScript />
-        
         <JsonLd />
+        
+        <Header />
         
         {children}
 
-        {/* 2. AJOUT : Le composant SpeedInsights ici */}
+        <LatestPostsSection />
+        <Footer />
+
         <SpeedInsights />
       </body>
     </html>

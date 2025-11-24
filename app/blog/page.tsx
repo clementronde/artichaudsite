@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { getAllPosts, getAllCategories } from '@/lib/blog-client'; // 🆕 Import depuis blog-client
 import BlogList from '@/components/blog/BlogList';
 
@@ -27,7 +25,6 @@ export default function BlogPage() {
 
   return (
     <>
-      <Header />
       <main className="pt-24 min-h-screen bg-noir text-blanc">
         {/* Hero Section */}
         <section className="section-padding border-b border-blanc/10">
@@ -86,7 +83,6 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

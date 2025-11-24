@@ -1,8 +1,6 @@
 import dynamic from 'next/dynamic';
-import Header from '@/components/header'; 
 import Link from 'next/link';
 import { getLatestPosts } from '@/lib/blog';
-import Footer from '@/components/footer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import AboutSection from '@/components/AboutSection';
@@ -115,6 +113,7 @@ export default function Home() {
     {
       id: 1,
       title: 'Charit.IO',
+      slug: 'charit.io',
       number: '01',
       deliverables: ['Webdesign', 'Social media', 'Brand identity'],
       image: '/img/selectedworks/charitio.jpg',
@@ -122,6 +121,7 @@ export default function Home() {
     {
       id: 2,
       title: 'Multiface',
+      slug: 'multiface',
       number: '02',
       deliverables: ['Webdesign', 'Brand strategy', 'Brand identity'],
       image: '/img/selectedworks/multiface.jpg',
@@ -129,6 +129,7 @@ export default function Home() {
     {
       id: 3,
       title: 'Disobey',
+      slug: 'disobey',
       number: '03',
       deliverables: ['Webdesign', 'Brand strategy', 'Social media'],
       image: '/img/selectedworks/disobey.jpg',
@@ -136,6 +137,7 @@ export default function Home() {
     {
       id: 4,
       title: "Com'on",
+      slug: 'comon',
       number: '04',
       deliverables: ['Webdesign', 'Brand strategy', 'Brand identity'],
       image: '/img/selectedworks/comon.jpg',
@@ -143,6 +145,7 @@ export default function Home() {
     {
       id: 5,
       title: 'Keleti tautu',
+      slug: 'keletitautu',
       number: '05',
       deliverables: ['Social media', 'Brand strategy', 'Brand identity'],
       image: '/img/selectedworks/keleti.jpg',
@@ -197,7 +200,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       
-      <Header />
 
       {/* HERO SECTION */}
       <section className="relative h-screen overflow-hidden bg-black flex items-center justify-center">
@@ -283,49 +285,7 @@ export default function Home() {
       {/* ABOUT */}
       <AboutSection />
 
-      {/* ACTUALITY (BLOG) */}
-      <section className="relative section-padding bg-noir overflow-hidden">
-        <div className="container-custom">
-          <div className="mb-12 lg:mb-20">
-            <h2 className="inline">
-              <span className="text-blanc font-bold" style={{ fontSize: 'clamp(63px, 6.25vw, 90px)', fontFamily: 'var(--font-inter)' }}>
-                Actuality
-              </span>
-              <span className="text-blanc font-light italic ml-4" style={{ fontSize: 'clamp(49px, 4.86vw, 70px)', fontFamily: 'var(--font-instrument)' }}>
-                ( crousti )
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
-            {latestPosts.map((post) => (
-              <article key={post.id} className="group cursor-pointer">
-                <Link href={`/blog/${post.slug}`}>
-                  <p className="mb-3" style={{ color: '#F2F2F2', fontFamily: 'var(--font-instrument)', fontSize: 'clamp(14px, 1.18vw, 17px)', fontWeight: 400, fontStyle: 'italic' }}>
-                    ( {post.category.toUpperCase()} )
-                  </p>
-                  <h3 className="mb-6 uppercase group-hover:text-orange transition-colors" style={{ color: '#F2F2F2', fontFamily: 'var(--font-inter)', fontSize: 'clamp(20px, 2.08vw, 30px)', fontWeight: 700, lineHeight: '120%', letterSpacing: '-0.02em' }}>
-                    {post.title}
-                  </h3>
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                    <div className="relative w-full h-full"> 
-                      <Image 
-                        src={post.image} 
-                        alt={post.title}
-                        fill 
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+   
     </>
   );
 }

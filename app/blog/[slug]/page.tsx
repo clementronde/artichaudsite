@@ -474,7 +474,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <DarkModeToggle />
       </main>
       
-      <Footer />
     </>
   );
 }

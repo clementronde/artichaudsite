@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import type { Metadata } from 'next';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import Image from 'next/image';
 
 export default function AboutPage() {
@@ -29,7 +27,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <Header />
       
       <main className="bg-noir text-blanc">
         {/* HERO SECTION AVEC ELLIPSES */}
@@ -466,7 +463,6 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 }

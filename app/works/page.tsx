@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -21,7 +19,6 @@ export const metadata: Metadata = {
 export default function WorksPage() {
   return (
     <>
-      <Header />
       <main className="pt-24 bg-noir text-blanc">
         {/* WORKS SECTION */}
         <section className="relative section-padding overflow-hidden">
@@ -345,7 +342,6 @@ export default function WorksPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
